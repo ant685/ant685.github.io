@@ -1,104 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Мотосалон — мотоциклы в продаже</title>
-    <meta name="description" content="Продажа мотоциклов. Каталог техники в наличии и под заказ.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Каталог мотоциклов</title>
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: #fff;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
 
-        header {
-            background: #000;
-            padding: 20px 40px;
-            border-bottom: 1px solid #222;
-        }
+.filters {
+    margin-bottom: 20px;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
+.filters button {
+    margin: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+.products {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        h2 {
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
+.product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 250px;
+}
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, 280px);
-            gap: 30px;
-        }
+.product img {
+    width: 100%;
+}
 
-        .product {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            padding: 20px;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .product:hover {
-            border-color: #ff2a2a;
-        }
-
-        .status {
-            display: inline-block;
-            background: #1f7a5f;
-            padding: 4px 10px;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-
-        .title {
-            font-size: 20px;
-            margin: 10px 0;
-        }
-
-        .info {
-            font-size: 14px;
-            color: #ccc;
-        }
-
-        .price {
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
+.hidden {
+    display: none;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-    <h1>МОТОСАЛОН</h1>
-</header>
+<h1>Каталог мотоциклов</h1>
 
-<div class="container">
-    <h2>Мотоциклы</h2>
+<div class="filters">
+    <strong>Бренд:</strong>
+    <button onclick="setBrand('all')">Все</button>
+    <button onclick="setBrand('suzuki')">Suzuki</button>
+    <button onclick="setBrand('honda')">Honda</button>
 
-    <div class="products">
+    <br><br>
 
-        <a href="products/120/index.html" class="product">
-            <span class="status">В наличии</span>
-            <div class="title">Suzuki GSF 1200</div>
-            <div class="info">1200 см³ · 2005 год</div>
-            <div class="price">Цена по запросу</div>
-        </a>
-
-    </div>
+    <strong>Наличие:</strong>
+    <button onclick="setStock('all')">Все</button>
+    <button onclick="setStock('in')">В наличии</button>
+    <button onclick="setStock('order')">Под заказ</button>
 </div>
 
+<div class="products">
+
+    <div class="product suzuki in">
+        <a href="products/120/">
+            <img src="products/120/main.jpg" alt="Suzuki GSF 1200">
+            <h3>Suzuki GSF 1200</h3>
+        </a>
+        <p>Артикул: 120</p>
+        <p>2005 · 1200 см³</p>
+        <p><strong>В наличии</strong></p>
+    </div>
+
+    <div class="product honda order">
+        <a href="products/121/">
+            <img src="products/121/main.jpg" alt="Honda CBF 1000">
+            <h3>Honda CBF 1000</h3>
+        </a>
+        <p>Артикул: 121</p>
+        <p>2014 · 1000 см³</p>
+        <p><strong>Под заказ</strong></p>
+    </div>
+
+</div>
+
+<script>
+let brand = 'all';
+let stock = 'all';
+
+function setBrand(value) {
+    brand = value;
+    apply();
+}
+
+function setStock(value) {
+    stock = value;
+    apply();
+}
+
+function apply() {
+    document.querySelectorAll('.product').forEach(p => {
+        let visible = true;
+
+        if (brand !== 'all' && !p.classList.contains(brand)) {
+            visible = false;
+        }
+
+        if (stock !== 'all' && !p.classList.contains(stock)) {
+            visible = false;
+        }
+
+        p.classList.toggle('hidden', !visible);
+    });
+}
+</script>
+
+<script src="js/filters.js"></script>
 </body>
-</html>
+</htm
