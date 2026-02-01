@@ -2,20 +2,103 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой магазин</title>
-    <meta name="description" content="Простой магазин с товарами">
+    <title>Мотосалон — мотоциклы в продаже</title>
+    <meta name="description" content="Продажа мотоциклов. Каталог техники в наличии и под заказ.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+        }
+
+        header {
+            background: #000;
+            padding: 20px 40px;
+            border-bottom: 1px solid #222;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 280px);
+            gap: 30px;
+        }
+
+        .product {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            padding: 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .product:hover {
+            border-color: #ff2a2a;
+        }
+
+        .status {
+            display: inline-block;
+            background: #1f7a5f;
+            padding: 4px 10px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .info {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .price {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Мой магазин</h1>
+<header>
+    <h1>МОТОСАЛОН</h1>
+</header>
 
-<p>Добро пожаловать в наш магазин. Выберите товар:</p>
+<div class="container">
+    <h2>Мотоциклы</h2>
 
-<ul>
-    <li><a href="product-1.html">Товар 1 — Кружка</a></li>
-    <li><a href="product-2.html">Товар 2 — Блокнот</a></li>
-    <li><a href="product-3.html">Товар 5 — Рюкзак</a></li>
-</ul>
+    <div class="products">
+
+        <a href="products/120/index.html" class="product">
+            <span class="status">В наличии</span>
+            <div class="title">Suzuki GSF 1200</div>
+            <div class="info">1200 см³ · 2005 год</div>
+            <div class="price">Цена по запросу</div>
+        </a>
+
+    </div>
+</div>
 
 </body>
 </html>
