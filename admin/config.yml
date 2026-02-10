@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: ant685/ant685.github.io
+  name: git-gateway
   branch: main
 
 media_folder: "uploads"
