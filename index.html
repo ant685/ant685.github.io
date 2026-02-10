@@ -1,122 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Каталог мотоциклов</title>
-<link rel="stylesheet" href="css/style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
-.filters {
-    margin-bottom: 20px;
-}
-
-.filters button {
-    margin: 5px;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-
-.products {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.product {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 250px;
-}
-
-.product img {
-    width: 100%;
-}
-
-.hidden {
-    display: none;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Каталог мотоциклов</title>
+  <!-- Подключаем стили -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <h1>Каталог мотоциклов</h1>
 
-<div class="filters">
-    <strong>Бренд:</strong>
-    <button onclick="setBrand('all')">Все</button>
-    <button onclick="setBrand('suzuki')">Suzuki</button>
-    <button onclick="setBrand('honda')">Honda</button>
+<div class="catalog">
 
-    <br><br>
-
-    <strong>Наличие:</strong>
-    <button onclick="setStock('all')">Все</button>
-    <button onclick="setStock('in')">В наличии</button>
-    <button onclick="setStock('order')">Под заказ</button>
-</div>
-
-<div class="products">
-
-    <div class="product suzuki in">
-        <a href="products/120/">
-            <img src="products/120/main.jpg" alt="Suzuki GSF 1200">
-            <h3>Suzuki GSF 1200</h3>
-        </a>
-        <p>Артикул: 120</p>
-        <p>2005 · 1200 см³</p>
-        <p><strong>В наличии</strong></p>
-    </div>
-
-    <div class="product honda order">
-        <a href="products/121/">
-            <img src="products/121/main.jpg" alt="Honda CBF 1000">
-            <h3>Honda CBF 1000</h3>
-        </a>
-        <p>Артикул: 121</p>
-        <p>2014 · 1000 см³</p>
-        <p><strong>Под заказ</strong></p>
-    </div>
+  <div class="card">
+    <img src="products/120/img/1.jpg" alt="Suzuki GSF 1200">
+    <h2>Suzuki GSF 1200</h2>
+    <p>Год: 2005</p>
+    <p>Мотор: 1200 куб.</p>
+    <a href="products/120/index.html">Подробнее</a>
+  </div>
 
 </div>
 
-<script>
-let brand = 'all';
-let stock = 'all';
-
-function setBrand(value) {
-    brand = value;
-    apply();
-}
-
-function setStock(value) {
-    stock = value;
-    apply();
-}
-
-function apply() {
-    document.querySelectorAll('.product').forEach(p => {
-        let visible = true;
-
-        if (brand !== 'all' && !p.classList.contains(brand)) {
-            visible = false;
-        }
-
-        if (stock !== 'all' && !p.classList.contains(stock)) {
-            visible = false;
-        }
-
-        p.classList.toggle('hidden', !visible);
-    });
-}
-</script>
-
-<script src="js/filters.js"></script>
 </body>
-</htm
+</html>
