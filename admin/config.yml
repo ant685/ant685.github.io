@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: ant685/ant685.github.io
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "products"
+    label: "Товары"
+    folder: "products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Название", name: "title", widget: "string" }
+      - { label: "Описание", name: "body", widget: "markdown" }
