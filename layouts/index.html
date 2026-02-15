@@ -1,0 +1,15 @@
+{{ define "main" }}
+
+<h1>Каталог товаров</h1>
+
+{{ range where .Site.RegularPages "Section" "products" }}
+  <div>
+    <h2>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h2>
+    <p>Бренд: {{ .Params.brand }}</p>
+    <p>Цена: {{ .Params.price }} ₽</p>
+  </div>
+{{ end }}
+
+{{ end }}
