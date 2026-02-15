@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ .Title }}</title>
+</head>
+<body>
+
+  <h1>{{ .Title }}</h1>
+
+  <p>Бренд: {{ .Params.brand }}</p>
+  <p>Цена: {{ .Params.price }} ₽</p>
+  <p>Описание:</p>
+  <div>{{ .Content }}</div>
+
+  <a href="/products/">← Назад в каталог</a>
+
+</body>
+</html>
