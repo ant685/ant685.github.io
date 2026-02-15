@@ -15,4 +15,5 @@ collections:
       - { label: "Название", name: "title", widget: "string" }
       - { label: "Бренд", name: "brand", widget: "string" }
       - { label: "Цена", name: "price", widget: "number" }
+      - { label: "Фото", name: "image", widget: "image" }
       - { label: "Описание", name: "body", widget: "markdown" }
