@@ -77,6 +77,20 @@ function setLanguage(lang) {
     
     // Re-render catalog to translate statuses or dynamic fields
     renderCatalog();
+
+    // Refresh counter text in new language
+    const counter = document.getElementById("resultsCounter");
+    if (counter) {
+        const searchQuery = document.getElementById("searchInput").value.toLowerCase().trim();
+        const selectedBrand = document.getElementById("filterBrand").value;
+        const yearFrom = parseInt(document.getElementById("filterYearFrom").value) || null;
+        const yearTo = parseInt(document.getElementById("filterYearTo").value) || null;
+        const engineFrom = parseInt(document.getElementById("filterEngineFrom").value) || null;
+        const engineTo = parseInt(document.getElementById("filterEngineTo").value) || null;
+        const hasActiveFilters = searchQuery !== "" || selectedBrand !== "" ||
+            yearFrom !== null || yearTo !== null || engineFrom !== null || engineTo !== null;
+        counter.innerHTML = buildCounterHTML(filteredMotorcycles.length, hasActiveFilters);
+    }
 }
 
 // Apply translations to UI elements
@@ -361,31 +375,42 @@ function applyFilters(isFirstLoad = false) {
     renderCatalog();
 }
 
-// Show/update results counter below filters
+// Show/update results counter — inside filter panel on desktop, below on mobile
 function updateResultsCounter(count, hasActiveFilters) {
-    let counter = document.getElementById("resultsCounter");
-    if (!counter) {
-        counter = document.createElement("div");
-        counter.id = "resultsCounter";
-        counter.style.cssText = "font-size:0.82rem;color:var(--text-secondary);font-weight:500;padding:8px 4px 0;letter-spacing:0.01em;";
-        const filterSection = document.querySelector(".search-filter-section");
-        if (filterSection && filterSection.parentNode) {
+    // Remove old counter from wherever it was
+    const existing = document.getElementById("resultsCounter");
+    if (existing) existing.remove();
+
+    const counter = document.createElement("div");
+    counter.id = "resultsCounter";
+    counter.innerHTML = buildCounterHTML(count, hasActiveFilters);
+
+    const filterSection = document.querySelector(".search-filter-section");
+    if (!filterSection) return;
+
+    if (window.innerWidth >= 601) {
+        // Desktop: append inside the filter panel, after the filters-grid
+        counter.className = "results-counter-desktop";
+        filterSection.appendChild(counter);
+    } else {
+        // Mobile: insert after the filter panel as a separate element
+        counter.className = "results-counter-mobile";
+        if (filterSection.parentNode) {
             filterSection.parentNode.insertBefore(counter, filterSection.nextSibling);
         }
     }
-    counter.innerHTML = buildCounterHTML(count, hasActiveFilters);
 }
 
 function buildCounterHTML(count, hasActiveFilters) {
     const lang = activeLanguage;
-    const n = `<span style="color:var(--color-accent);font-weight:700;">${count}</span>`;
+    const n = `<span class="counter-number">${count}</span>`;
     if (hasActiveFilters) {
         if (lang === "RU") return `Найдено: ${n} лот${getRuPlural(count)}`;
-        if (lang === "PL") return `Znaleziono: ${n} motocykl${count === 1 ? "" : count < 5 ? "e" : "i"}`;
+        if (lang === "PL") return `Znaleziono: ${n} lot${count === 1 ? "" : "ów"}`;
         return `Found: ${n} lot${count !== 1 ? "s" : ""}`;
     } else {
         if (lang === "RU") return `Всего: ${n} лот${getRuPlural(count)}`;
-        if (lang === "PL") return `Łącznie: ${n} motocykl${count === 1 ? "" : count < 5 ? "e" : "i"}`;
+        if (lang === "PL") return `Łącznie: ${n} lot${count === 1 ? "" : "ów"}`;
         return `Total: ${n} lot${count !== 1 ? "s" : ""}`;
     }
 }
@@ -555,7 +580,7 @@ function createCardElement(moto) {
                 <!-- Brand + Model in one white row, lot number in orange on right -->
                 <div class="card-title-row">
                     <h3 class="card-title">${brandName} ${modelName}</h3>
-                    <span class="card-lot-badge">#${moto.lot}</span>
+                    <span class="card-lot-badge">LOT ${moto.lot}</span>
                 </div>
                 
                 <!-- Specs grid with restored original icons and orange texts -->
@@ -567,7 +592,7 @@ function createCardElement(moto) {
                 <div class="card-footer-row">
                     <div class="card-price">${priceHTML}</div>
                     <div class="card-view-link">
-                        <span>${(window.TRANSLATIONS[activeLanguage] && window.TRANSLATIONS[activeLanguage].view_details) || "View Details"}</span>
+                        <span>${(window.TRANSLATIONS[activeLanguage] && window.TRANSLATIONS[activeLanguage].view_details) ? window.TRANSLATIONS[activeLanguage].view_details : (activeLanguage === "RU" ? "Подробнее" : activeLanguage === "PL" ? "Szczegóły" : "View Details")}</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
