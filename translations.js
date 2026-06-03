@@ -40,8 +40,9 @@ window.TRANSLATIONS = {
         condition_good: "Good",
         condition_fair: "Fair",
         specifications: "Specifications",
-        price: "Price",
-        view_details: "View Details"
+        price: "Price"
+    },
+    RU: {
         search_placeholder: "Поиск по номеру лота или названию модели...",
         brand_filter_all: "Все марки",
         year_from: "Год от",
@@ -81,8 +82,9 @@ window.TRANSLATIONS = {
         condition_good: "Хорошее",
         condition_fair: "Удовлетворительное",
         specifications: "Характеристики",
-        price: "Цена",
-        view_details: "Подробнее"
+        price: "Цена"
+    },
+    PL: {
         search_placeholder: "Szukaj według numeru partii lub modelu...",
         brand_filter_all: "Wszystkie marki",
         year_from: "Rok od",
@@ -122,5 +124,6 @@ window.TRANSLATIONS = {
         condition_good: "Dobry",
         condition_fair: "Dostateczny",
         specifications: "Dane techniczne",
-        price: "Cena",
-        view_details: "Szczegóły"
+        price: "Cena"
+    }
+};

@@ -107,19 +107,7 @@ header.scrolled {
     padding: 8px 20px;
     height: 80px;
     gap: 15px;
-    transition: height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
-                padding 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* Shrink header ~50% on scroll */
-header.scrolled .header-container {
-    height: 48px;
-    padding: 4px 20px;
-}
-
-/* Logo shrinks proportionally with header */
-header.scrolled .logo-link {
-    height: 38px;
+    /* No transition on height to prevent jitter */
 }
 
 /* Left: Social Contacts pill buttons */
@@ -184,7 +172,6 @@ header.scrolled .logo-link {
     align-items: center;
     justify-content: center;
     height: 64px; /* 90% of 80px header height (minus padding) */
-    transition: height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .logo-img {
@@ -273,16 +260,8 @@ header.scrolled .logo-link {
         padding: 6px 12px;
         gap: 4px;
         height: 56px;
+        /* Fixed layout: contacts left, logo center, lang right — no transitions */
         grid-template-columns: auto 1fr auto;
-        transition: height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
-                    padding 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-    header.scrolled .header-container {
-        height: 40px;
-        padding: 4px 12px;
-    }
-    header.scrolled .logo-link {
-        height: 32px;
     }
     .header-brand {
         display: flex;
@@ -363,32 +342,6 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 10px;
     align-items: center;
-}
-
-/* Results Counter — Desktop: inside filter panel, bottom-left */
-.results-counter-desktop {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    padding-top: 4px;
-    letter-spacing: 0.01em;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    margin-top: 4px;
-}
-
-/* Results Counter — Mobile: below filter panel, standalone */
-.results-counter-mobile {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    padding: 10px 4px 0;
-    letter-spacing: 0.01em;
-}
-
-/* Orange number inside counter */
-.counter-number {
-    color: var(--color-accent);
-    font-weight: 700;
 }
 
 /* Standardized filters design */
