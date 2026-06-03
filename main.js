@@ -348,9 +348,54 @@ function applyFilters(isFirstLoad = false) {
         return true;
     });
 
+    // Detect if any filter is active
+    const hasActiveFilters = searchQuery !== "" || selectedBrand !== "" ||
+        yearFrom !== null || yearTo !== null ||
+        engineFrom !== null || engineTo !== null;
+
+    // Update results counter
+    updateResultsCounter(filteredMotorcycles.length, hasActiveFilters);
+
     // Reset pagination
     currentDisplayCount = Math.min(window.CONFIG.itemsPerPage, filteredMotorcycles.length);
     renderCatalog();
+}
+
+// Show/update results counter below filters
+function updateResultsCounter(count, hasActiveFilters) {
+    let counter = document.getElementById("resultsCounter");
+    if (!counter) {
+        counter = document.createElement("div");
+        counter.id = "resultsCounter";
+        counter.style.cssText = "font-size:0.82rem;color:var(--text-secondary);font-weight:500;padding:8px 4px 0;letter-spacing:0.01em;";
+        const filterSection = document.querySelector(".search-filter-section");
+        if (filterSection && filterSection.parentNode) {
+            filterSection.parentNode.insertBefore(counter, filterSection.nextSibling);
+        }
+    }
+    counter.innerHTML = buildCounterHTML(count, hasActiveFilters);
+}
+
+function buildCounterHTML(count, hasActiveFilters) {
+    const lang = activeLanguage;
+    const n = `<span style="color:var(--color-accent);font-weight:700;">${count}</span>`;
+    if (hasActiveFilters) {
+        if (lang === "RU") return `Найдено: ${n} лот${getRuPlural(count)}`;
+        if (lang === "PL") return `Znaleziono: ${n} motocykl${count === 1 ? "" : count < 5 ? "e" : "i"}`;
+        return `Found: ${n} lot${count !== 1 ? "s" : ""}`;
+    } else {
+        if (lang === "RU") return `Всего: ${n} лот${getRuPlural(count)}`;
+        if (lang === "PL") return `Łącznie: ${n} motocykl${count === 1 ? "" : count < 5 ? "e" : "i"}`;
+        return `Total: ${n} lot${count !== 1 ? "s" : ""}`;
+    }
+}
+
+function getRuPlural(n) {
+    const mod10 = n % 10, mod100 = n % 100;
+    if (mod100 >= 11 && mod100 <= 19) return "ов";
+    if (mod10 === 1) return "";
+    if (mod10 >= 2 && mod10 <= 4) return "а";
+    return "ов";
 }
 
 // Load more action
@@ -507,10 +552,11 @@ function createCardElement(moto) {
             </div>
             
             <div class="card-info">
-                <!-- Brand uppercase in orange -->
-                <div class="card-brand">${brandName}</div>
-                <!-- Model large bold white -->
-                <h3 class="card-title">${modelName}</h3>
+                <!-- Brand + Model in one white row, lot number in orange on right -->
+                <div class="card-title-row">
+                    <h3 class="card-title">${brandName} ${modelName}</h3>
+                    <span class="card-lot-badge">#${moto.lot}</span>
+                </div>
                 
                 <!-- Specs grid with restored original icons and orange texts -->
                 <div class="card-specs">
