@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MOTOBY - Premium Used Motorcycles Catalog</title>
+    <!-- Favicon placeholder or premium icon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Link styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Island Sticky Header -->
+    <header class="glass-panel">
+        <div class="header-container">
+            <!-- Social Contacts Left -->
+            <div class="contacts" id="headerContacts">
+                <!-- Telegram -->
+                <a href="#" class="contact-link" id="contactTelegram" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.51-.46-.01-1.33-.26-1.98-.47-.8-.26-1.42-.4-1.37-.85.03-.24.36-.48 1-.73 3.89-1.69 6.5-2.8 7.83-3.34 3.72-1.53 4.49-1.8 5 .04.11.11.14.23.15.35z"/>
+                    </svg>
+                    <span>Telegram</span>
+                </a>
+                <!-- WhatsApp -->
+                <a href="#" class="contact-link" id="contactWhatsapp" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;">
+                        <path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm-7.01 15.24c-1.48 0-2.93-.4-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.1 8.1 0 0 1-1.24-4.38c0-4.49 3.66-8.15 8.16-8.15 2.18 0 4.22.85 5.76 2.39a8.09 8.09 0 0 1 2.39 5.77c-.01 4.49-3.67 8.15-8.15 8.15zm4.49-6.13c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-1.11-.56-1.85-.93-2.58-2.18-.19-.33.19-.31.55-1.03.06-.12.03-.23-.01-.31-.05-.08-.39-.95-.54-1.3-.15-.36-.3-.31-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.66.65-.66 1.58 0 .93.68 1.83.77 1.96.1.13 1.34 2.05 3.26 2.88.46.2 1 .31 1.4.44.49.15.93.13 1.29.08.4-.06 1.22-.5 1.39-.98.17-.48.17-.89.12-.98-.05-.09-.19-.13-.44-.26z"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                </a>
+                <!-- Email -->
+                <a href="#" class="contact-link" id="contactEmail">
+                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <span id="contactEmailText">Email</span>
+                </a>
+            </div>
+
+            <!-- Center Brand Block -->
+            <div class="header-brand">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="MOTTO" class="logo-img">
+                </a>
+            </div>
+
+            <!-- Language Switcher Right -->
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="RU">RU</button>
+                <button class="lang-btn" data-lang="EN">EN</button>
+                <button class="lang-btn" data-lang="PL">PL</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+        
+        <!-- Search and Filters Dashboard -->
+        <section class="search-filter-section glass-panel">
+            
+            <!-- Instant Search Bar -->
+            <div class="search-wrapper">
+                <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search by lot number or model name...">
+            </div>
+
+            <!-- Advanced Filters Grid -->
+            <div class="filters-grid">
+                
+                <!-- Brand Select -->
+                <select id="filterBrand" class="filter-select">
+                    <option value="" data-i18n="brand_filter_all">All Brands</option>
+                </select>
+
+                <!-- Year From -->
+                <input type="number" id="filterYearFrom" class="filter-input" placeholder="Year From" min="1900" max="2100">
+
+                <!-- Year To -->
+                <input type="number" id="filterYearTo" class="filter-input" placeholder="Year To" min="1900" max="2100">
+
+                <!-- Engine CC From -->
+                <input type="number" id="filterEngineFrom" class="filter-input" placeholder="Engine From" min="0">
+
+                <!-- Engine CC To -->
+                <input type="number" id="filterEngineTo" class="filter-input" placeholder="Engine To" min="0">
+
+                <!-- Reset Filters -->
+                <button id="btnResetFilters" class="btn-reset">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 4v6h-6M1 20v-6h6"></path>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    <span data-i18n="reset_filters">Reset Filters</span>
+                </button>
+
+                <!-- iPhone Show Sold Toggle -->
+                <div class="toggle-wrapper">
+                    <label class="switch">
+                        <input type="checkbox" id="toggleShowSold">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label" data-i18n="show_sold">Show Sold</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Catalog Grid -->
+        <section class="catalog-grid" id="catalogGrid">
+            <!-- Dynamic Cards Loaded Here -->
+            <!-- Skeleton cards initially rendered -->
+            <div class="card glass-panel">
+                <div class="card-media"><div class="skeleton"></div></div>
+            </div>
+            <div class="card glass-panel">
+                <div class="card-media"><div class="skeleton"></div></div>
+            </div>
+            <div class="card glass-panel">
+                <div class="card-media"><div class="skeleton"></div></div>
+            </div>
+            <div class="card glass-panel">
+                <div class="card-media"><div class="skeleton"></div></div>
+            </div>
+        </section>
+
+        <!-- Load More Section -->
+        <div class="load-more-container">
+            <button id="btnLoadMore" class="btn-load-more" data-i18n="load_more" style="display: none;">Load More</button>
+        </div>
+
+    </main>
+
+    <!-- Project Config & Translations scripts -->
+    <script src="config.js"></script>
+    <script src="translations.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
