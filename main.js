@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupEventListeners();
     loadCatalogData().catch(err => console.error("Catalog load failed:", err));
     setupScrollHandler();
+    setupHeaderContacts();
 });
 
 // ─── Configuration ────────────────────────────────────
@@ -73,6 +74,7 @@ function applyTranslations() {
     const placeholders = {
         searchInput:      "search_placeholder",
         filterYearFrom:   "year_from",
+        filterYearTo:     "year_to",
         filterEngineFrom: "engine_from",
         filterEngineTo:   "engine_to",
     };
@@ -120,6 +122,30 @@ function setupScrollHandler() {
     window.addEventListener("scroll", () => {
         header.classList.toggle("scrolled", window.scrollY > 20);
     }, { passive: true });
+}
+
+// ─── Header responsive contacts ───────────────────────
+function setupHeaderContacts() {
+    const contacts  = document.querySelector(".contacts");
+    const container = document.querySelector(".header-container");
+    if (!contacts || !container) return;
+
+    const check = () => {
+        contacts.classList.remove("icon-only");
+        const available = container.offsetWidth;
+        const langW     = (document.querySelector(".lang-switcher")?.offsetWidth || 0);
+        const contactsW = contacts.scrollWidth;
+        const padding   = 40;
+        // icon-only when contacts + lang + safety margin exceed half the container
+        // (logo is centred absolutely, so each side gets ~half)
+        const sideAvail = (available - padding) / 2;
+        if (contactsW > sideAvail) {
+            contacts.classList.add("icon-only");
+        }
+    };
+
+    check();
+    window.addEventListener("resize", check, { passive: true });
 }
 
 // ─── CSV loading ──────────────────────────────────────
@@ -248,30 +274,23 @@ function updateCounter(count, hasFilters) {
     const el = document.getElementById("resultsCounter");
     if (!el) return;
 
-    const n  = `<span style="color:var(--color-accent);font-weight:700">${count}</span>`;
+    const n    = `<span style="color:var(--color-accent);font-weight:700">${count}</span>`;
     const lang = activeLanguage;
+    const label = hasFilters ? tr("counter_found") : tr("counter_total");
 
-    // Russian plural suffix
-    const ruSuffix = (() => {
+    let unit;
+    if (lang === "RU") {
         const m = count % 10, h = count % 100;
-        if (h >= 11 && h <= 19) return "ов";
-        if (m === 1) return "";
-        if (m >= 2 && m <= 4) return "а";
-        return "ов";
-    })();
-
-    // Polish suffix
-    const plSuffix = count === 1 ? "" : count < 5 ? "e" : "i";
-
-    if (hasFilters) {
-        if (lang === "RU") el.innerHTML = `Найдено: ${n} лот${ruSuffix}`;
-        else if (lang === "PL") el.innerHTML = `Znaleziono: ${n} motocykl${plSuffix}`;
-        else el.innerHTML = `Found: ${n} lot${count !== 1 ? "s" : ""}`;
+        const suffix = (h >= 11 && h <= 19) ? "ов" : m === 1 ? "" : (m >= 2 && m <= 4) ? "а" : "ов";
+        unit = tr("counter_unit") + suffix;
+    } else if (lang === "PL") {
+        const suffix = count === 1 ? "" : count < 5 ? "e" : "i";
+        unit = tr("counter_unit") + suffix;
     } else {
-        if (lang === "RU") el.innerHTML = `Всего: ${n} лот${ruSuffix}`;
-        else if (lang === "PL") el.innerHTML = `Łącznie: ${n} motocykl${plSuffix}`;
-        else el.innerHTML = `Total: ${n} lot${count !== 1 ? "s" : ""}`;
+        unit = count !== 1 ? tr("counter_unit_many") : tr("counter_unit");
     }
+
+    el.innerHTML = `${label}: ${n} ${unit}`;
 }
 
 // ─── Rendering ────────────────────────────────────────
@@ -372,7 +391,7 @@ function createCard(moto) {
             <div class="card-info">
                 <div class="card-title-row">
                     <h3 class="card-title">${brand} ${model}</h3>
-                    <span class="card-lot-badge">#${moto.lot}</span>
+                    <span class="card-lot-badge">${tr("lot_prefix")} ${moto.lot}</span>
                 </div>
                 <div class="card-specs">${specsHTML}</div>
                 <div class="card-footer-row">

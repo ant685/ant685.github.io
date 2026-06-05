@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     parseLotParam();
     loadConfiguration();
     setupScrollHandler();
+    setupHeaderContacts();
     if (currentLotId) {
         loadProductData().catch(err => console.error("Product load failed:", err));
     } else {
@@ -89,6 +90,27 @@ function setupScrollHandler() {
     window.addEventListener("scroll", () => {
         header.classList.toggle("scrolled", window.scrollY > 30);
     }, { passive: true });
+}
+
+// ─── Header responsive contacts ───────────────────────
+function setupHeaderContacts() {
+    const contacts  = document.querySelector(".contacts");
+    const container = document.querySelector(".header-container");
+    if (!contacts || !container) return;
+
+    const check = () => {
+        contacts.classList.remove("icon-only");
+        const available = container.offsetWidth;
+        const contactsW = contacts.scrollWidth;
+        const padding   = 40;
+        const sideAvail = (available - padding) / 2;
+        if (contactsW > sideAvail) {
+            contacts.classList.add("icon-only");
+        }
+    };
+
+    check();
+    window.addEventListener("resize", check, { passive: true });
 }
 
 // ─── URL parameter ────────────────────────────────────
