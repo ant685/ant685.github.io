@@ -298,6 +298,14 @@ main {
     user-select: none;
     height: 44px;
     padding-left: 4px;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+}
+
+.toggle-wrapper .results-counter {
+    margin-left: auto;
+    padding: 0;
+    min-height: auto;
 }
 
 .toggle-label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
@@ -336,9 +344,6 @@ input:checked + .slider::before { transform: translateX(18px); }
     color: var(--text-secondary);
     font-weight: 500;
     letter-spacing: 0.01em;
-    min-height: 20px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border-color);
 }
 
 /* ─── Badges ────────────────────────────────────────── */

@@ -73,7 +73,6 @@ function applyTranslations() {
     const placeholders = {
         searchInput:      "search_placeholder",
         filterYearFrom:   "year_from",
-        filterYearTo:     "year_to",
         filterEngineFrom: "engine_from",
         filterEngineTo:   "engine_to",
     };
@@ -104,7 +103,6 @@ function setupEventListeners() {
         { id: "searchInput",      ev: "input"  },
         { id: "filterBrand",      ev: "change" },
         { id: "filterYearFrom",   ev: "input"  },
-        { id: "filterYearTo",     ev: "input"  },
         { id: "filterEngineFrom", ev: "input"  },
         { id: "filterEngineTo",   ev: "input"  },
         { id: "toggleShowSold",   ev: "change" },
@@ -193,7 +191,7 @@ function buildBrandFilter() {
 }
 
 function resetFilters() {
-    ["searchInput","filterBrand","filterYearFrom","filterYearTo","filterEngineFrom","filterEngineTo"]
+    ["searchInput","filterBrand","filterYearFrom","filterEngineFrom","filterEngineTo"]
         .forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
     const tog = document.getElementById("toggleShowSold");
     if (tog) tog.checked = false;
@@ -208,7 +206,6 @@ function applyFilters() {
     const q        = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
     const brand    = document.getElementById("filterBrand")?.value || "";
     const yearFrom = getIntVal("filterYearFrom");
-    const yearTo   = getIntVal("filterYearTo");
     const engFrom  = getIntVal("filterEngineFrom");
     const engTo    = getIntVal("filterEngineTo");
     const showSold = document.getElementById("toggleShowSold")?.checked ?? false;
@@ -228,8 +225,7 @@ function applyFilters() {
         const year = parseInt(m.year);
         if (!isNaN(year)) {
             if (yearFrom && year < yearFrom) return false;
-            if (yearTo   && year > yearTo)   return false;
-        } else if (yearFrom || yearTo) return false;
+        } else if (yearFrom) return false;
 
         const eng = parseInt(m.engine_cc);
         if (!isNaN(eng)) {
@@ -240,7 +236,7 @@ function applyFilters() {
         return true;
     });
 
-    const hasFilters = !!(q || brand || yearFrom || yearTo || engFrom || engTo);
+    const hasFilters = !!(q || brand || yearFrom || engFrom || engTo);
     updateCounter(filteredMotoycles.length, hasFilters);
 
     const pageSize = getPageSize();
