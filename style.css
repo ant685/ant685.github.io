@@ -335,9 +335,10 @@ input:checked + .slider::before { transform: translateX(18px); }
     font-size: 0.82rem;
     color: var(--text-secondary);
     font-weight: 500;
-    padding: 8px 4px 0;
     letter-spacing: 0.01em;
-    min-height: 24px; /* prevents layout jump while empty */
+    min-height: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
 }
 
 /* ─── Badges ────────────────────────────────────────── */

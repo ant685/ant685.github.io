@@ -243,7 +243,7 @@ function applyFilters() {
     const hasFilters = !!(q || brand || yearFrom || yearTo || engFrom || engTo);
     updateCounter(filteredMotoycles.length, hasFilters);
 
-    const pageSize = window.CONFIG?.itemsPerPage || 20;
+    const pageSize = getPageSize();
     displayCount = Math.min(pageSize, filteredMotoycles.length);
     renderCatalog();
 }
@@ -279,8 +279,12 @@ function updateCounter(count, hasFilters) {
 }
 
 // ─── Rendering ────────────────────────────────────────
+function getPageSize() {
+    return window.innerWidth < 768 ? 9 : 12;
+}
+
 function loadMore() {
-    const pageSize = window.CONFIG?.itemsPerPage || 20;
+    const pageSize = getPageSize();
     displayCount += Math.min(pageSize, filteredMotoycles.length - displayCount);
     renderCatalog();
 }
