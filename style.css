@@ -134,6 +134,12 @@ header.scrolled {
     height: 34px;
 }
 
+.contacts.icon-only {
+    gap: 4px;
+}
+
+.contacts.icon-only { gap: 4px; }
+
 .contacts.icon-only .contact-link span { display: none; }
 
 .contacts.icon-only #contactTelegram {
