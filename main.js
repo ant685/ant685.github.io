@@ -58,6 +58,14 @@ function setLanguage(lang) {
     applyTranslations();
     updateLangUI();
     renderCatalog(); // re-render so status labels update
+    const hasFilters = !!(
+        (document.getElementById("searchInput")?.value || "").trim() ||
+        document.getElementById("filterBrand")?.value ||
+        document.getElementById("filterYearFrom")?.value ||
+        document.getElementById("filterEngineFrom")?.value ||
+        document.getElementById("filterEngineTo")?.value
+    );
+    updateCounter(filteredMotoycles.length, hasFilters);
 }
 
 /** Shorthand: get translated string for key */
@@ -281,11 +289,15 @@ function updateCounter(count, hasFilters) {
     let unit;
     if (lang === "RU") {
         const m = count % 10, h = count % 100;
-        const suffix = (h >= 11 && h <= 19) ? "ов" : m === 1 ? "" : (m >= 2 && m <= 4) ? "а" : "ов";
-        unit = tr("counter_unit") + suffix;
+        if (h >= 11 && h <= 19)        unit = tr("counter_unit_many");
+        else if (m === 1)              unit = tr("counter_unit");
+        else if (m >= 2 && m <= 4)    unit = tr("counter_unit_few");
+        else                           unit = tr("counter_unit_many");
     } else if (lang === "PL") {
-        const suffix = count === 1 ? "" : count < 5 ? "e" : "i";
-        unit = tr("counter_unit") + suffix;
+        if (count === 1)               unit = tr("counter_unit");
+        else if (count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14))
+                                       unit = tr("counter_unit_few");
+        else                           unit = tr("counter_unit_many");
     } else {
         unit = count !== 1 ? tr("counter_unit_many") : tr("counter_unit");
     }
