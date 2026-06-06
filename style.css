@@ -95,7 +95,7 @@ header.scrolled {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 20px;
+    padding: 8px 20px 8px 10px;
     height: 80px;
 }
 
@@ -228,7 +228,7 @@ header.scrolled {
 }
 
 @media (max-width: 600px) {
-    .header-container { padding: 6px 12px; height: 56px; }
+    .header-container { padding: 6px 12px 6px 6px; height: 56px; }
     .logo-link { height: 44px; }
     .lang-btn { min-width: 28px; font-size: 0.65rem; }
 }
