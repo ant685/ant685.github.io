@@ -2,7 +2,7 @@
 "use strict";
 
 let allMotorcycles  = [];
-let filteredMotoycles = [];
+let filteredMotorcycles = [];
 let displayCount    = 0;
 let activeLanguage  = "EN";
 
@@ -65,7 +65,7 @@ function setLanguage(lang) {
         document.getElementById("filterEngineFrom")?.value ||
         document.getElementById("filterEngineTo")?.value
     );
-    updateCounter(filteredMotoycles.length, hasFilters);
+    updateCounter(filteredMotorcycles.length, hasFilters);
 }
 
 /** Shorthand: get translated string for key */
@@ -244,7 +244,7 @@ function applyFilters() {
     const engTo    = getIntVal("filterEngineTo");
     const showSold = document.getElementById("toggleShowSold")?.checked ?? false;
 
-    filteredMotoycles = allMotorcycles.filter(m => {
+    filteredMotorcycles = allMotorcycles.filter(m => {
         if (!showSold && (m.status || "").toLowerCase().trim() === "sold") return false;
 
         if (q) {
@@ -271,10 +271,10 @@ function applyFilters() {
     });
 
     const hasFilters = !!(q || brand || yearFrom || engFrom || engTo);
-    updateCounter(filteredMotoycles.length, hasFilters);
+    updateCounter(filteredMotorcycles.length, hasFilters);
 
     const pageSize = getPageSize();
-    displayCount = Math.min(pageSize, filteredMotoycles.length);
+    displayCount = Math.min(pageSize, filteredMotorcycles.length);
     renderCatalog();
 }
 
@@ -312,7 +312,7 @@ function getPageSize() {
 
 function loadMore() {
     const pageSize = getPageSize();
-    displayCount += Math.min(pageSize, filteredMotoycles.length - displayCount);
+    displayCount += Math.min(pageSize, filteredMotorcycles.length - displayCount);
     renderCatalog();
 }
 
@@ -321,7 +321,7 @@ function renderCatalog() {
     const loadMoreBtn = document.getElementById("btnLoadMore");
     if (!grid) return;
 
-    if (filteredMotoycles.length === 0) {
+    if (filteredMotorcycles.length === 0) {
         grid.innerHTML = `
             <div class="no-results-state">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -335,14 +335,14 @@ function renderCatalog() {
     }
 
     grid.innerHTML = "";
-    filteredMotoycles.slice(0, displayCount).forEach((moto, idx) => {
+    filteredMotorcycles.slice(0, displayCount).forEach((moto, idx) => {
         const card = createCard(moto);
         card.style.animationDelay = `${Math.min(idx, 12) * 40}ms`;
         grid.appendChild(card);
     });
 
     if (loadMoreBtn) {
-        loadMoreBtn.style.display = displayCount < filteredMotoycles.length ? "block" : "none";
+        loadMoreBtn.style.display = displayCount < filteredMotorcycles.length ? "block" : "none";
     }
 }
 

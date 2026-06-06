@@ -304,25 +304,20 @@ async function loadGallery(lotId) {
     const thumbs = document.getElementById("galleryThumbs");
     if (thumbs) thumbs.innerHTML = "";
 
-    // Check images in parallel batches of 4 — stops at first gap
-    const MAX   = 40;
-    const BATCH = 4;
-    let scanning = true;
-    let index    = 1;
+    // Check images sequentially — stops after 2 consecutive missing files
+    const MAX          = 40;
+    let consecutiveMiss = 0;
 
-    while (scanning && index <= MAX) {
-        const urls = [];
-        for (let i = index; i < index + BATCH && i <= MAX; i++) {
-            urls.push(`images/lot${lotId}/${i}.jpg`);
+    for (let i = 1; i <= MAX; i++) {
+        const url = `images/lot${lotId}/${i}.jpg`;
+        const found = await probeImage(url);
+        if (found) {
+            galleryImages.push(url);
+            consecutiveMiss = 0;
+        } else {
+            consecutiveMiss++;
+            if (consecutiveMiss >= 2) break;
         }
-
-        const results = await Promise.all(urls.map(probeImage));
-
-        for (let i = 0; i < results.length; i++) {
-            if (results[i]) { galleryImages.push(urls[i]); }
-            else { scanning = false; break; }
-        }
-        index += BATCH;
     }
 
     if (galleryImages.length === 0) {
