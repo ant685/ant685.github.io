@@ -352,7 +352,7 @@ main {
     align-items: center;
     gap: 10px;
     user-select: none;
-    height: 44px;
+    min-height: 44px;
     padding-left: 4px;
     grid-column: 1 / -1;
     justify-content: flex-start;
@@ -364,7 +364,7 @@ main {
     min-height: auto;
 }
 
-.toggle-label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+.toggle-label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); white-space: nowrap; }
 
 .switch { position: relative; display: inline-block; width: 46px; height: 28px; flex-shrink: 0; }
 .switch input { opacity: 0; width: 0; height: 0; }
@@ -400,6 +400,15 @@ input:checked + .slider::before { transform: translateX(18px); }
     color: var(--text-secondary);
     font-weight: 500;
     letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.counter-value { white-space: nowrap; display: inline; }
+.counter-num   { color: var(--color-accent); font-weight: 700; }
+
+@media (max-width: 767px) {
+    .toggle-label    { white-space: normal; }
+    .results-counter { white-space: normal; }
 }
 
 /* ─── Badges ────────────────────────────────────────── */

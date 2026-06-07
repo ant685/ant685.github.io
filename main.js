@@ -95,6 +95,22 @@ function applyTranslations() {
 
     const sel = document.getElementById("filterBrand");
     if (sel?.options[0]) sel.options[0].textContent = tr("brand_filter_all");
+
+    updateToggleLabel();
+}
+
+function updateToggleLabel() {
+    const el = document.querySelector(".toggle-label");
+    if (!el) return;
+    const val = tr("show_sold");
+    if (activeLanguage !== "EN" && window.innerWidth < 768) {
+        const idx = val.indexOf(" ");
+        el.innerHTML = idx > -1
+            ? val.slice(0, idx) + "<br>" + val.slice(idx + 1)
+            : val;
+    } else {
+        el.textContent = val;
+    }
 }
 
 function updateLangUI() {
@@ -122,6 +138,22 @@ function setupEventListeners() {
 
     document.getElementById("btnResetFilters")?.addEventListener("click", resetFilters);
     document.getElementById("btnLoadMore")?.addEventListener("click", loadMore);
+
+    let _resizeTmr;
+    window.addEventListener("resize", () => {
+        clearTimeout(_resizeTmr);
+        _resizeTmr = setTimeout(() => {
+            updateToggleLabel();
+            const hasFilters = !!(
+                (document.getElementById("searchInput")?.value || "").trim() ||
+                document.getElementById("filterBrand")?.value ||
+                document.getElementById("filterYearFrom")?.value ||
+                document.getElementById("filterEngineFrom")?.value ||
+                document.getElementById("filterEngineTo")?.value
+            );
+            updateCounter(filteredMotorcycles.length, hasFilters);
+        }, 150);
+    }, { passive: true });
 }
 
 function setupScrollHandler() {
@@ -282,8 +314,7 @@ function updateCounter(count, hasFilters) {
     const el = document.getElementById("resultsCounter");
     if (!el) return;
 
-    const n    = `<span style="color:var(--color-accent);font-weight:700">${count}</span>`;
-    const lang = activeLanguage;
+    const lang  = activeLanguage;
     const label = hasFilters ? tr("counter_found") : tr("counter_total");
 
     let unit;
@@ -302,7 +333,12 @@ function updateCounter(count, hasFilters) {
         unit = count !== 1 ? tr("counter_unit_many") : tr("counter_unit");
     }
 
-    el.innerHTML = `${label}: ${n} ${unit}`;
+    const prefix = `<span class="counter-prefix">${label}:</span>`;
+    const value  = `<span class="counter-value"><span class="counter-num">${count}</span> ${unit}</span>`;
+
+    el.innerHTML = (window.innerWidth < 768 && lang !== "EN")
+        ? `${prefix}<br>${value}`
+        : `${prefix} ${value}`;
 }
 
 // ─── Rendering ────────────────────────────────────────
