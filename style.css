@@ -708,7 +708,9 @@ input:checked + .slider::before { transform: translateX(18px); }
     border-radius: 20px;
     overflow: hidden;
     background: #0c0c0e;
-    touch-action: pan-y; /* allow vertical scroll by default; overridden by JS for pinch */
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 /* Transition: opacity for smooth image switching */
@@ -720,10 +722,10 @@ input:checked + .slider::before { transform: translateX(18px); }
     object-fit: cover;
     cursor: zoom-in;
     transition: opacity 0.2s ease;
-    transform-origin: center center;
+    transform-origin: 0 0;
     will-change: transform;
+    -webkit-user-select: none;
     user-select: none;
-    -webkit-user-drag: none;
 }
 
 .gallery-arrow {

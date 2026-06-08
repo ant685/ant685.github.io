@@ -7,35 +7,19 @@ let activeLanguage  = "EN";
 let galleryImages   = [];
 let activeImageIdx  = 0;
 
-// Touch tracking (lightbox swipe)
+// Touch tracking
 let touchStartX = 0, touchStartY = 0;
 let touchEndX   = 0, touchEndY   = 0;
 let swipingVert = false;
 
-// ─── Gallery pinch-to-zoom state ──────────────────────
-const GZ = {
-    scale:      1,
-    minScale:   1,
-    maxScale:   4,
-    tx:         0,         // translateX offset px
-    ty:         0,         // translateY offset px
-    // pinch
-    isPinching: false,
-    startDist:  0,
-    startScale: 1,
-    startMidX:  0,
-    startMidY:  0,
-    startTx:    0,
-    startTy:    0,
-    // pan (single finger when zoomed)
-    isPanning:  false,
-    panStartX:  0,
-    panStartY:  0,
-    panTx:      0,
-    panTy:      0,
-    // double-tap
-    lastTap:    0,
-};
+// Pinch-to-zoom state
+let zoomScale = 1, zoomTX = 0, zoomTY = 0;
+let isPinching = false, isPanning = false;
+let initPinchDist = 0, initScale = 1, initTX = 0, initTY = 0;
+let pinchMidX = 0, pinchMidY = 0;
+let zPanStartX = 0, zPanStartY = 0;
+let lastTapTime = 0, lastTapX = 0, lastTapY = 0;
+const ZOOM_MAX = 4;
 
 // ─── Init ─────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
@@ -391,6 +375,31 @@ function renderGallery() {
     });
 }
 
+function selectImage(index) {
+    if (index < 0 || index >= galleryImages.length) return;
+    if (zoomScale !== 1) resetZoomState(false);
+    activeImageIdx = index;
+
+    const mainImg = document.getElementById("mainGalleryImg");
+    if (mainImg) {
+        mainImg.style.opacity = "0";
+        setTimeout(() => {
+            mainImg.src           = galleryImages[activeImageIdx];
+            mainImg.style.opacity = "1";
+        }, 200);
+    }
+
+    document.querySelectorAll(".thumb-item").forEach((el, i) => {
+        el.classList.toggle("active", i === activeImageIdx);
+        if (i === activeImageIdx) {
+            el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
+    });
+}
+
+function nextImage() { selectImage((activeImageIdx + 1) % galleryImages.length); }
+function prevImage() { selectImage((activeImageIdx - 1 + galleryImages.length) % galleryImages.length); }
+
 // ─── Events ───────────────────────────────────────────
 function setupEventListeners() {
     // Language
@@ -440,202 +449,11 @@ function setupEventListeners() {
     document.getElementById("btnShareAction")?.addEventListener("click", handleShare);
 
     // Pinch-to-zoom on main gallery image
-    setupGalleryZoom();
+    setupPinchZoom();
 }
 
-// ─── Gallery Pinch-to-Zoom ────────────────────────────
-function setupGalleryZoom() {
-    const container = document.querySelector(".gallery-main-container");
-    if (!container) return;
-
-    // Prevent native browser zoom on the container
-    container.addEventListener("touchstart",  gzTouchStart, { passive: false });
-    container.addEventListener("touchmove",   gzTouchMove,  { passive: false });
-    container.addEventListener("touchend",    gzTouchEnd,   { passive: false });
-    container.addEventListener("touchcancel", gzTouchEnd,   { passive: false });
-}
-
-function gzApply(img) {
-    img.style.transition = "none";
-    img.style.transform  = `translate(${GZ.tx}px, ${GZ.ty}px) scale(${GZ.scale})`;
-}
-
-function gzReset(img, animated) {
-    GZ.scale = 1; GZ.tx = 0; GZ.ty = 0;
-    img.style.transition = animated ? "transform 0.25s ease" : "none";
-    img.style.transform  = "";
-    img.style.cursor     = "zoom-in";
-}
-
-function gzClampOffset(img) {
-    const container = img.closest(".gallery-main-container");
-    if (!container) return;
-    const cw = container.offsetWidth;
-    const ch = container.offsetHeight;
-    const maxTx = (cw  * (GZ.scale - 1)) / 2;
-    const maxTy = (ch * (GZ.scale - 1)) / 2;
-    GZ.tx = Math.max(-maxTx, Math.min(maxTx, GZ.tx));
-    GZ.ty = Math.max(-maxTy, Math.min(maxTy, GZ.ty));
-}
-
-function gzDist(t) {
-    const dx = t[0].clientX - t[1].clientX;
-    const dy = t[0].clientY - t[1].clientY;
-    return Math.sqrt(dx * dx + dy * dy);
-}
-
-function gzMid(t, container) {
-    const rect = container.getBoundingClientRect();
-    return {
-        x: ((t[0].clientX + t[1].clientX) / 2) - rect.left,
-        y: ((t[0].clientY + t[1].clientY) / 2) - rect.top,
-    };
-}
-
-function gzTouchStart(e) {
-    const img = document.getElementById("mainGalleryImg");
-    if (!img) return;
-
-    if (e.touches.length === 2) {
-        e.preventDefault();
-        GZ.isPinching  = true;
-        GZ.isPanning   = false;
-        GZ.startDist   = gzDist(e.touches);
-        GZ.startScale  = GZ.scale;
-        GZ.startTx     = GZ.tx;
-        GZ.startTy     = GZ.ty;
-        const mid      = gzMid(e.touches, e.currentTarget);
-        GZ.startMidX   = mid.x;
-        GZ.startMidY   = mid.y;
-        e.currentTarget.style.touchAction = "none";
-        return;
-    }
-
-    if (e.touches.length === 1) {
-        // Double-tap detection
-        const now = Date.now();
-        if (now - GZ.lastTap < 300) {
-            e.preventDefault();
-            gzReset(img, true);
-            const container = document.querySelector(".gallery-main-container");
-            if (container) container.style.touchAction = "pan-y";
-            GZ.lastTap = 0;
-            return;
-        }
-        GZ.lastTap = now;
-
-        if (GZ.scale > 1) {
-            // Pan mode
-            e.preventDefault();
-            GZ.isPanning  = true;
-            GZ.panStartX  = e.touches[0].clientX;
-            GZ.panStartY  = e.touches[0].clientY;
-            GZ.panTx      = GZ.tx;
-            GZ.panTy      = GZ.ty;
-            img.style.cursor = "grabbing";
-            e.currentTarget.style.touchAction = "none";
-        }
-        // scale === 1 → fall through to normal gallery swipe (handled by existing handlers)
-    }
-}
-
-function gzTouchMove(e) {
-    const img = document.getElementById("mainGalleryImg");
-    if (!img) return;
-
-    if (GZ.isPinching && e.touches.length === 2) {
-        e.preventDefault();
-        const dist  = gzDist(e.touches);
-        let newScale = GZ.startScale * (dist / GZ.startDist);
-        newScale     = Math.max(GZ.minScale, Math.min(GZ.maxScale, newScale));
-
-        // Adjust translation so zoom is centred on pinch midpoint
-        const mid    = gzMid(e.touches, e.currentTarget);
-        const factor = newScale / GZ.startScale;
-        GZ.tx = mid.x - factor * (GZ.startMidX - GZ.startTx);
-        GZ.ty = mid.y - factor * (GZ.startMidY - GZ.startTy);
-        GZ.scale = newScale;
-
-        // Reset to origin coordinates convention
-        GZ.tx = GZ.startTx + (mid.x - GZ.startMidX) + (GZ.startMidX * (1 - factor));
-        GZ.ty = GZ.startTy + (mid.y - GZ.startMidY) + (GZ.startMidY * (1 - factor));
-
-        gzClampOffset(img);
-        gzApply(img);
-        img.style.cursor = "grab";
-        return;
-    }
-
-    if (GZ.isPanning && e.touches.length === 1 && GZ.scale > 1) {
-        e.preventDefault();
-        GZ.tx = GZ.panTx + (e.touches[0].clientX - GZ.panStartX);
-        GZ.ty = GZ.panTy + (e.touches[0].clientY - GZ.panStartY);
-        gzClampOffset(img);
-        gzApply(img);
-        return;
-    }
-}
-
-function gzTouchEnd(e) {
-    const img = document.getElementById("mainGalleryImg");
-    if (!img) return;
-
-    if (GZ.isPinching) {
-        GZ.isPinching = false;
-        const container = document.querySelector(".gallery-main-container");
-        if (container) container.style.touchAction = GZ.scale > 1 ? "none" : "pan-y";
-        // Snap back to 1x if released below threshold
-        if (GZ.scale < 1.05) {
-            gzReset(img, true);
-            if (container) container.style.touchAction = "pan-y";
-        } else {
-            gzClampOffset(img);
-            img.style.cursor = GZ.scale > 1 ? "grab" : "zoom-in";
-        }
-        return;
-    }
-
-    if (GZ.isPanning) {
-        GZ.isPanning = false;
-        img.style.cursor = GZ.scale > 1 ? "grab" : "zoom-in";
-        const container = document.querySelector(".gallery-main-container");
-        if (container) container.style.touchAction = GZ.scale > 1 ? "none" : "pan-y";
-    }
-}
-
-
-function selectImage(index) {
-    if (index < 0 || index >= galleryImages.length) return;
-    activeImageIdx = index;
-
-    const mainImg = document.getElementById("mainGalleryImg");
-    if (mainImg) {
-        // Reset zoom state on slide change
-        GZ.scale = 1; GZ.tx = 0; GZ.ty = 0;
-        mainImg.style.transition = "none";
-        mainImg.style.transform  = "";
-        mainImg.style.cursor     = "zoom-in";
-
-        mainImg.style.opacity = "0";
-        setTimeout(() => {
-            mainImg.src           = galleryImages[activeImageIdx];
-            mainImg.style.opacity = "1";
-        }, 200);
-    }
-
-    document.querySelectorAll(".thumb-item").forEach((el, i) => {
-        el.classList.toggle("active", i === activeImageIdx);
-        if (i === activeImageIdx) {
-            el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-        }
-    });
-}
-
-function nextImage() { if (GZ.scale <= 1) selectImage((activeImageIdx + 1) % galleryImages.length); }
-function prevImage() { if (GZ.scale <= 1) selectImage((activeImageIdx - 1 + galleryImages.length) % galleryImages.length); }
-
+// ─── Lightbox ─────────────────────────────────────────
 function openLightbox() {
-    if (GZ.scale > 1) return; // don't open lightbox while zoomed
     const lb  = document.getElementById("imageLightbox");
     const img = document.getElementById("lightboxImg");
     if (!lb || !img) return;
@@ -757,6 +575,137 @@ function onKeyDown(e) {
     if      (e.key === "Escape")      closeLightbox();
     else if (e.key === "ArrowLeft")   lbNavigate(-1);
     else if (e.key === "ArrowRight")  lbNavigate(1);
+}
+
+// ─── Pinch-to-Zoom ────────────────────────────────────
+function setupPinchZoom() {
+    const container = document.querySelector(".gallery-main-container");
+    if (!container) return;
+    container.addEventListener("touchstart",  onZoomTouchStart,  { passive: false });
+    container.addEventListener("touchmove",   onZoomTouchMove,   { passive: false });
+    container.addEventListener("touchend",    onZoomTouchEnd,    { passive: false });
+    container.addEventListener("touchcancel", onZoomTouchCancel, { passive: false });
+}
+
+function zPinchDist(t1, t2) {
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+function applyZoomTransform(animated) {
+    const img = document.getElementById("mainGalleryImg");
+    if (!img) return;
+    clampZoomOffset();
+    img.style.transition = animated ? "transform 0.2s ease" : "";
+    img.style.transform  = `translate(${zoomTX}px,${zoomTY}px) scale(${zoomScale})`;
+}
+
+function clampZoomOffset() {
+    const c = document.querySelector(".gallery-main-container");
+    if (!c) return;
+    if (zoomScale <= 1) { zoomTX = 0; zoomTY = 0; return; }
+    const cw = c.offsetWidth, ch = c.offsetHeight;
+    zoomTX = Math.max(cw - cw * zoomScale, Math.min(0, zoomTX));
+    zoomTY = Math.max(ch - ch * zoomScale, Math.min(0, zoomTY));
+}
+
+function resetZoomState(animated) {
+    zoomScale = 1; zoomTX = 0; zoomTY = 0;
+    isPinching = false; isPanning = false;
+    const img = document.getElementById("mainGalleryImg");
+    if (!img) return;
+    img.style.transition = animated ? "transform 0.2s ease" : "";
+    img.style.transform  = "";
+    if (animated) setTimeout(() => { if (img) img.style.transition = ""; }, 220);
+}
+
+function onZoomTouchStart(e) {
+    const t = e.touches;
+
+    if (t.length === 2) {
+        e.preventDefault();
+        isPinching    = true;
+        isPanning     = false;
+        initPinchDist = zPinchDist(t[0], t[1]);
+        initScale     = zoomScale;
+        initTX        = zoomTX;
+        initTY        = zoomTY;
+        const rect = document.querySelector(".gallery-main-container").getBoundingClientRect();
+        pinchMidX = (t[0].clientX + t[1].clientX) / 2 - rect.left;
+        pinchMidY = (t[0].clientY + t[1].clientY) / 2 - rect.top;
+
+    } else if (t.length === 1) {
+        const now = Date.now();
+        const dx  = t[0].clientX - lastTapX;
+        const dy  = t[0].clientY - lastTapY;
+
+        if (now - lastTapTime < 300 && Math.sqrt(dx * dx + dy * dy) < 30) {
+            e.preventDefault();
+            resetZoomState(true);
+            lastTapTime = 0;
+            return;
+        }
+        lastTapTime = now;
+        lastTapX    = t[0].clientX;
+        lastTapY    = t[0].clientY;
+
+        if (zoomScale > 1) {
+            e.preventDefault();
+            isPanning  = true;
+            isPinching = false;
+            zPanStartX = t[0].clientX - zoomTX;
+            zPanStartY = t[0].clientY - zoomTY;
+        }
+    }
+}
+
+function onZoomTouchMove(e) {
+    const t = e.touches;
+
+    if (isPinching && t.length >= 2) {
+        e.preventDefault();
+        const dist     = zPinchDist(t[0], t[1]);
+        const newScale = Math.max(1, Math.min(ZOOM_MAX, initScale * dist / initPinchDist));
+        const rect     = document.querySelector(".gallery-main-container").getBoundingClientRect();
+        const curMidX  = (t[0].clientX + t[1].clientX) / 2 - rect.left;
+        const curMidY  = (t[0].clientY + t[1].clientY) / 2 - rect.top;
+        // Keep the image point under the initial pinch centre fixed
+        const imgX     = (pinchMidX - initTX) / initScale;
+        const imgY     = (pinchMidY - initTY) / initScale;
+        zoomScale = newScale;
+        zoomTX    = curMidX - imgX * newScale;
+        zoomTY    = curMidY - imgY * newScale;
+        applyZoomTransform(false);
+
+    } else if (isPanning && t.length === 1 && zoomScale > 1) {
+        e.preventDefault();
+        zoomTX = t[0].clientX - zPanStartX;
+        zoomTY = t[0].clientY - zPanStartY;
+        applyZoomTransform(false);
+    }
+}
+
+function onZoomTouchEnd(e) {
+    const remaining = e.touches.length;
+    if (remaining === 0) {
+        if (isPinching && zoomScale < 1.05) resetZoomState(true);
+        isPinching = false;
+        isPanning  = false;
+    } else if (remaining === 1 && isPinching) {
+        // Transition from 2 fingers to 1: switch to pan mode
+        isPinching = false;
+        if (zoomScale > 1) {
+            isPanning  = true;
+            zPanStartX = e.touches[0].clientX - zoomTX;
+            zPanStartY = e.touches[0].clientY - zoomTY;
+        }
+    }
+}
+
+function onZoomTouchCancel() {
+    isPinching = false;
+    isPanning  = false;
 }
 
 // ─── Share ────────────────────────────────────────────
