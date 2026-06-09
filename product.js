@@ -19,8 +19,11 @@ let initPinchDist = 0, initScale = 1, initTX = 0, initTY = 0;
 let lbNatCX = 0, lbNatCY = 0;       // natural center of lightbox img in viewport
 let lbAnchorLX = 0, lbAnchorLY = 0; // pinch anchor in image local coords
 let zPanStartX = 0, zPanStartY = 0;
+// Double-tap state
 let lastTapTime = 0, lastTapX = 0, lastTapY = 0;
+let doubleTapPending = false;
 const ZOOM_MAX = 4;
+const DOUBLE_TAP_ZOOM = 2;
 
 // ─── Init ─────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
@@ -563,6 +566,8 @@ function onLbTouchStart(e) {
     const t = e.touches;
 
     if (t.length === 2) {
+        // Cancel any pending double-tap detection
+        doubleTapPending = false;
         e.preventDefault();
         isPinching    = true;
         isPanning     = false;
@@ -582,28 +587,54 @@ function onLbTouchStart(e) {
         }
 
     } else if (t.length === 1) {
-        const now = Date.now();
-        const dx  = t[0].clientX - lastTapX;
-        const dy  = t[0].clientY - lastTapY;
+        const now  = Date.now();
+        const cx   = t[0].clientX;
+        const cy   = t[0].clientY;
+        const ddx  = cx - lastTapX;
+        const ddy  = cy - lastTapY;
+        const img  = document.getElementById("lightboxImg");
 
-        // Double tap → reset zoom
-        if (now - lastTapTime < 300 && Math.sqrt(dx * dx + dy * dy) < 30) {
+        // Check double-tap: within 300ms, within 30px, touch on the image
+        const onImage = img && (() => {
+            const rect = img.getBoundingClientRect();
+            return cx >= rect.left && cx <= rect.right && cy >= rect.top && cy <= rect.bottom;
+        })();
+
+        if (now - lastTapTime < 300 && Math.sqrt(ddx * ddx + ddy * ddy) < 30 && onImage) {
             e.preventDefault();
-            resetZoomState(true);
+            doubleTapPending = false;
             lastTapTime = 0;
+
+            if (zoomScale > 1) {
+                // Already zoomed → reset to 1x
+                resetZoomState(true);
+            } else {
+                // At 1x → zoom to 2x centered on tap point
+                const targetScale = DOUBLE_TAP_ZOOM;
+                if (img) {
+                    const rect  = img.getBoundingClientRect();
+                    const natCX = rect.left + rect.width  / 2;
+                    const natCY = rect.top  + rect.height / 2;
+                    zoomScale   = targetScale;
+                    zoomTX      = (natCX - cx) * (targetScale - 1);
+                    zoomTY      = (natCY - cy) * (targetScale - 1);
+                    applyZoomTransform(true);
+                }
+            }
             return;
         }
+
         lastTapTime = now;
-        lastTapX    = t[0].clientX;
-        lastTapY    = t[0].clientY;
+        lastTapX    = cx;
+        lastTapY    = cy;
 
         if (zoomScale > 1) {
             // Pan mode while zoomed
             e.preventDefault();
             isPanning  = true;
             isPinching = false;
-            zPanStartX = t[0].clientX - zoomTX;
-            zPanStartY = t[0].clientY - zoomTY;
+            zPanStartX = cx - zoomTX;
+            zPanStartY = cy - zoomTY;
         } else {
             // Normal swipe tracking (close / navigate)
             touchStartX = t[0].screenX;
