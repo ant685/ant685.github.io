@@ -1,0 +1,174 @@
+/* MOTOBY — filters.css · search & filter bar, toggle, results counter */
+
+/* ─── Main Container ─────────────────────────────────── */
+main {
+    width: 90%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+/* ─── Search & Filters ──────────────────────────────── */
+.search-filter-section {
+    margin-top: 25px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.search-wrapper { position: relative; width: 100%; }
+
+.search-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 12px 12px 42px;
+    font-family: var(--font);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(240, 60, 26, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-select,
+.filter-input,
+.btn-reset {
+    height: 44px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0 14px;
+    font-family: var(--font);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.filter-select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Keep background-color separate so the arrow image isn't reset on hover */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='white' stroke-width='2' viewBox='0 0 24 24'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-color: rgba(255, 255, 255, 0.04);
+    padding-right: 36px;
+}
+
+.filter-select:hover,
+.filter-input:hover { border-color: var(--color-accent); background-color: rgba(255,255,255,0.06); }
+.filter-select:focus,
+.filter-input:focus  { border-color: var(--color-accent); background-color: rgba(255,255,255,0.06); }
+
+.filter-select option { background: #0c0c0e; color: var(--text-primary); }
+
+.btn-reset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(240, 60, 26, 0.08);
+    color: var(--color-accent);
+    border: 1px solid rgba(240, 60, 26, 0.2);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn-reset:hover {
+    background: var(--color-accent);
+    color: #000;
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+}
+
+/* iOS-style toggle */
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    min-height: 44px;
+    padding-left: 4px;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+}
+
+.toggle-wrapper .results-counter {
+    margin-left: auto;
+    padding: 0;
+    min-height: auto;
+}
+
+.toggle-label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); white-space: nowrap; }
+
+.switch { position: relative; display: inline-block; width: 46px; height: 28px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+    transition: background 0.2s ease;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 2px;
+    bottom: 2px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+
+input:checked + .slider { background: var(--color-accent); }
+input:checked + .slider::before { transform: translateX(18px); }
+
+/* ─── Results counter ───────────────────────────────── */
+.results-counter {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.counter-value { white-space: nowrap; display: inline; }
+.counter-num   { color: var(--color-accent); font-weight: 700; }

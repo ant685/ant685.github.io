@@ -1,0 +1,155 @@
+/* MOTOBY — header.css · sticky header, contacts, logo, language switcher */
+
+/* ─── Sticky Header ─────────────────────────────────── */
+header {
+    position: sticky;
+    top: 15px;
+    z-index: 1000;
+    margin: 15px auto;
+    width: 90%;
+    max-width: 1800px;
+    border-radius: 14px;
+    transition: top 0.3s var(--ease), border-radius 0.3s var(--ease),
+                background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+header.scrolled {
+    top: 5px;
+    border-radius: 10px;
+    background: rgba(10, 10, 12, 0.92);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Logo is absolutely centred; contacts and lang float on sides */
+.header-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px 8px 10px;
+    height: 80px;
+}
+
+/* Contacts */
+.contacts { display: flex; gap: 8px; align-items: center; flex-shrink: 0; z-index: 1; }
+
+.contact-link {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.15s ease, border-color 0.15s ease,
+                background 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover states */
+#contactTelegram:hover { color: #24A1DE; border-color: rgba(36,161,222,0.4); background: rgba(36,161,222,0.08); box-shadow: 0 0 12px rgba(36,161,222,0.2); }
+#contactWhatsapp:hover { color: #25D366; border-color: rgba(37,211,102,0.4); background: rgba(37,211,102,0.08); box-shadow: 0 0 12px rgba(37,211,102,0.2); }
+#contactEmail:hover    { color: var(--color-red); border-color: rgba(255,69,58,0.4); background: rgba(255,69,58,0.08); box-shadow: 0 0 12px rgba(255,69,58,0.2); }
+
+/* Icon-only mode: text hidden, icons stay centred, active colors always on */
+.contacts.icon-only .contact-link {
+    gap: 0;
+    padding: 7px;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+}
+
+.contacts.icon-only {
+    gap: 4px;
+}
+
+.contacts.icon-only { gap: 4px; }
+
+.contacts.icon-only .contact-link span { display: none; }
+
+.contacts.icon-only #contactTelegram {
+    color: #24A1DE;
+    border-color: rgba(36,161,222,0.4);
+    background: rgba(36,161,222,0.08);
+    box-shadow: 0 0 12px rgba(36,161,222,0.2);
+}
+
+.contacts.icon-only #contactWhatsapp {
+    color: #25D366;
+    border-color: rgba(37,211,102,0.4);
+    background: rgba(37,211,102,0.08);
+    box-shadow: 0 0 12px rgba(37,211,102,0.2);
+}
+
+.contacts.icon-only #contactEmail {
+    color: var(--color-red);
+    border-color: rgba(255,69,58,0.4);
+    background: rgba(255,69,58,0.08);
+    box-shadow: 0 0 12px rgba(255,69,58,0.2);
+}
+
+/* Logo — absolutely centred, pointer-events none so it doesn't block sides */
+.header-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    pointer-events: all;
+}
+
+.logo-img { height: 100%; width: auto; display: block; border-radius: 6px; }
+
+/* Language switcher */
+.lang-switcher {
+    display: flex;
+    gap: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px;
+    border-radius: 30px;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 0.7rem;
+    padding: 4px 0 5px;
+    min-width: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.lang-btn:hover { color: var(--text-primary); }
+
+.lang-btn.active {
+    background: var(--color-accent);
+    color: #000000;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(240, 60, 26, 0.3);
+}

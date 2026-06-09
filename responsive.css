@@ -1,0 +1,25 @@
+/* MOTOBY — responsive.css · adaptive (@media) overrides — MUST load last */
+
+/* Hide header on product page on mobile */
+@media (max-width: 768px) {
+    .product-page header { display: none !important; }
+}
+
+@media (max-width: 600px) {
+    .header-container { padding: 6px 12px 6px 6px; height: 56px; }
+    .logo-link { height: 44px; }
+    .lang-btn { min-width: 28px; font-size: 0.65rem; }
+}
+
+@media (max-width: 767px) {
+    .toggle-label    { white-space: normal; }
+    .results-counter { white-space: normal; }
+}
+
+@media (min-width: 768px)  { .catalog-grid { grid-template-columns: repeat(2,1fr); gap: 24px; } }
+
+@media (min-width: 1024px) { .catalog-grid { grid-template-columns: repeat(3,1fr); gap: 30px; } }
+
+@media (min-width: 992px) {
+    .product-layout { grid-template-columns: 1.4fr 1fr; gap: 40px; }
+}

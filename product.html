@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>MOTOBY - Lot Details</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="filters.css">
+    <link rel="stylesheet" href="catalog.css">
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body class="product-page">
+
+    <header class="glass-panel">
+        <div class="header-container">
+
+            <div class="contacts">
+                <a href="#" class="contact-link" id="contactTelegram" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="2 2 20 20" width="16" height="16" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.51-.46-.01-1.33-.26-1.98-.47-.8-.26-1.42-.4-1.37-.85.03-.24.36-.48 1-.73 3.89-1.69 6.5-2.8 7.83-3.34 3.72-1.53 4.49-1.8 5 .04.11.11.14.23.15.35z"/>
+                    </svg>
+                    <span>Telegram</span>
+                </a>
+                <a href="#" class="contact-link" id="contactWhatsapp" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="#" class="contact-link" id="contactEmail">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <span id="contactEmailText">Email</span>
+                </a>
+            </div>
+
+            <div class="header-brand">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="MOTOBY" class="logo-img">
+                </a>
+            </div>
+
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="RU">RU</button>
+                <button class="lang-btn" data-lang="EN">EN</button>
+                <button class="lang-btn" data-lang="PL">PL</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="back-container">
+            <a href="index.html" class="btn-back">
+                <span data-i18n="back_to_catalog">← Back to Catalog</span>
+            </a>
+        </div>
+
+        <div class="product-layout" id="productLayout" style="display:none">
+
+            <section class="product-gallery-wrapper">
+                <div class="gallery-main-container glass-panel">
+                    <img src="" alt="Motorcycle" class="gallery-main-img" id="mainGalleryImg">
+                    <button class="gallery-arrow gallery-arrow-left" id="galleryPrevBtn" aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                    </button>
+                    <button class="gallery-arrow gallery-arrow-right" id="galleryNextBtn" aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                    </button>
+                </div>
+                <div class="gallery-thumbs-container" id="galleryThumbs"></div>
+            </section>
+
+            <section class="product-sidebar">
+
+                <div class="product-title-card glass-panel">
+                    <div class="product-meta-header">
+                        <span class="product-lot-number" id="productLotText">LOT —</span>
+                        <div id="productStatusBadgeContainer"></div>
+                    </div>
+                    <h1 class="product-title-text" id="productTitle">—</h1>
+                    <div class="product-price-section" id="productPriceContainer" style="display:none">
+                        <span class="product-price-label" data-i18n="price">Price</span>
+                        <div class="product-price-tag" id="productPrice">—</div>
+                    </div>
+                </div>
+
+                <div class="specs-panel glass-panel">
+                    <h2 class="specs-title" data-i18n="specifications">Specifications</h2>
+                    <div class="specs-grid">
+                        <div class="specs-row" id="rowLot">
+                            <span class="spec-name" data-i18n="lot">Lot</span>
+                            <span class="spec-val" id="specLot">—</span>
+                        </div>
+                        <div class="specs-row" id="rowModel">
+                            <span class="spec-name" data-i18n="model">Model</span>
+                            <span class="spec-val" id="specModel">—</span>
+                        </div>
+                        <div class="specs-row" id="rowYear">
+                            <span class="spec-name" data-i18n="year">Year</span>
+                            <span class="spec-val" id="specYear">—</span>
+                        </div>
+                        <div class="specs-row" id="rowEngine">
+                            <span class="spec-name" data-i18n="engine">Engine</span>
+                            <span class="spec-val" id="specEngine">—</span>
+                        </div>
+                        <div class="specs-row" id="rowMileage">
+                            <span class="spec-name" data-i18n="mileage">Mileage</span>
+                            <span class="spec-val" id="specMileage">—</span>
+                        </div>
+                        <div class="specs-row" id="rowLocation">
+                            <span class="spec-name" data-i18n="location">Location</span>
+                            <span class="spec-val" id="specLocation">—</span>
+                        </div>
+                        <div class="specs-row" id="rowCondition">
+                            <span class="spec-name" data-i18n="condition">Condition</span>
+                            <span class="spec-val" id="specCondition">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desc-panel glass-panel" id="descPanel" style="display:none">
+                    <h2 class="desc-title" data-i18n="description">Description</h2>
+                    <p class="desc-text" id="descText"></p>
+                </div>
+
+                <div class="actions-panel">
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary-action btn-telegram" id="btnActionTelegram">
+                        <svg class="action-icon" viewBox="2 2 20 20" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.51-.46-.01-1.33-.26-1.98-.47-.8-.26-1.42-.4-1.37-.85.03-.24.36-.48 1-.73 3.89-1.69 6.5-2.8 7.83-3.34 3.72-1.53 4.49-1.8 5 .04.11.11.14.23.15.35z"/>
+                        </svg>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary-action btn-whatsapp" id="btnActionWhatsapp">
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                        </svg>
+                        <span>WhatsApp</span>
+                    </a>
+                    <button class="btn-primary-action btn-share" id="btnShareAction">
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <span data-i18n="share">Share</span>
+                    </button>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="no-results-state" id="lotNotFoundBlock" style="display:none; padding:100px 20px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <h2 data-i18n="product_not_found">Lot not found</h2>
+            <a href="index.html" class="btn-reset" style="display:inline-flex; margin-top:8px" data-i18n="back_to_catalog">← Back to Catalog</a>
+        </div>
+
+    </main>
+
+    <!-- Fullscreen lightbox -->
+    <div class="lightbox" id="imageLightbox">
+        <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close">&times;</button>
+        <button class="lightbox-arrow lightbox-arrow-left" id="lightboxPrevBtn" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Fullscreen" class="lightbox-img" id="lightboxImg">
+        </div>
+        <button class="lightbox-arrow lightbox-arrow-right" id="lightboxNextBtn" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    </div>
+
+    <div class="toast" id="toastMessage"></div>
+
+    <script src="config.js"></script>
+    <script src="translations.js"></script>
+    <script src="language.js"></script>
+    <script src="gallery.js"></script>
+    <script src="zoom.js"></script>
+    <script src="lightbox.js"></script>
+    <script src="product.js"></script>
+</body>
+</html>

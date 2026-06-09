@@ -1,0 +1,177 @@
+/* MOTOBY — gallery.css · product gallery, thumbnails, fullscreen lightbox */
+
+/* Gallery */
+.product-gallery-wrapper { display: flex; flex-direction: column; gap: 12px; }
+
+.gallery-main-container {
+    position: relative;
+    width: 100%;
+    padding-top: 66.67%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0c0c0e;
+}
+
+/* Transition: opacity for smooth image switching */
+.gallery-main-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+}
+
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    z-index: 5;
+    opacity: 0.85;
+}
+
+.gallery-arrow:hover {
+    background: var(--color-accent);
+    color: #000;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-arrow-left  { left: 15px; }
+.gallery-arrow-right { right: 15px; }
+.gallery-arrow svg   { width: 18px; height: 18px; fill: currentColor; }
+
+.gallery-thumbs-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: thin;
+}
+
+.thumb-item {
+    flex: 0 0 80px;
+    aspect-ratio: 3/2;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transition: border-color 0.15s ease, opacity 0.15s ease;
+    background: #0a0a0c;
+}
+
+.thumb-item.active { border-color: var(--color-accent); opacity: 1; }
+.thumb-item:hover:not(.active) { opacity: 0.85; }
+.thumb-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ─── Lightbox ──────────────────────────────────────── */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.98);
+    z-index: 3000;
+    display: none;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s var(--ease);
+    backdrop-filter: blur(15px);
+    touch-action: none;
+}
+
+.lightbox.active { display: flex; opacity: 1; }
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 82vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    -webkit-user-select: none;
+    user-select: none;
+    will-change: transform;
+    transform-origin: center center;
+    transition: opacity 0.18s ease;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3200;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.lightbox-close:hover { background: var(--color-accent); color: #000; transform: scale(1.05); }
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3100;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.lightbox-arrow:hover { background: var(--color-accent); color: #000; transform: translateY(-50%) scale(1.05); }
+.lightbox-arrow-left  { left: 25px; }
+.lightbox-arrow-right { right: 25px; }
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 3100;
+}
