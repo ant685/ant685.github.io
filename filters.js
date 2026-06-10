@@ -22,6 +22,8 @@ function resetFilters() {
         .forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
     const tog = document.getElementById("toggleShowSold");
     if (tog) tog.checked = false;
+    const togFav = document.getElementById("toggleShowFavorites");
+    if (togFav) togFav.checked = false;
     applyFilters();
 }
 
@@ -36,9 +38,11 @@ function applyFilters() {
     const engFrom  = getIntVal("filterEngineFrom");
     const engTo    = getIntVal("filterEngineTo");
     const showSold = document.getElementById("toggleShowSold")?.checked ?? false;
+    const showFavs = document.getElementById("toggleShowFavorites")?.checked ?? false;
 
     filteredMotorcycles = allMotorcycles.filter(m => {
         if (!showSold && (m.status || "").toLowerCase().trim() === "sold") return false;
+        if (showFavs && !Favorites.has(m.lot)) return false;
 
         if (q) {
             const lot   = (m.lot   || "").toLowerCase();
@@ -63,7 +67,7 @@ function applyFilters() {
         return true;
     });
 
-    const hasFilters = !!(q || brand || yearFrom || engFrom || engTo);
+    const hasFilters = !!(q || brand || yearFrom || engFrom || engTo || showFavs);
     updateCounter(filteredMotorcycles.length, hasFilters);
 
     const pageSize = getPageSize();

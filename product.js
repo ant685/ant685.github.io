@@ -285,6 +285,16 @@ function setupEventListeners() {
     // Share button
     document.getElementById("btnShareAction")?.addEventListener("click", handleShare);
 
+    // Favorites button
+    const favBtn = document.getElementById("productFavBtn");
+    if (favBtn && currentLotId) {
+        favBtn.classList.toggle("active", Favorites.has(currentLotId));
+        favBtn.addEventListener("click", () => {
+            const added = Favorites.toggle(currentLotId);
+            favBtn.classList.toggle("active", added);
+        });
+    }
+
     // Lightbox touch: swipe + pinch-to-zoom
     setupPinchZoom();
 }

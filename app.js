@@ -32,7 +32,8 @@ registerLanguageChangeHook(() => {
         document.getElementById("filterBrand")?.value ||
         document.getElementById("filterYearFrom")?.value ||
         document.getElementById("filterEngineFrom")?.value ||
-        document.getElementById("filterEngineTo")?.value
+        document.getElementById("filterEngineTo")?.value ||
+        document.getElementById("toggleShowFavorites")?.checked
     );
     updateCounter(filteredMotorcycles.length, hasFilters);
 });
@@ -92,7 +93,8 @@ function setupEventListeners() {
         { id: "filterYearFrom",   ev: "input"  },
         { id: "filterEngineFrom", ev: "input"  },
         { id: "filterEngineTo",   ev: "input"  },
-        { id: "toggleShowSold",   ev: "change" },
+        { id: "toggleShowSold",       ev: "change" },
+        { id: "toggleShowFavorites",  ev: "change" },
     ].forEach(({ id, ev }) => {
         document.getElementById(id)?.addEventListener(ev, applyFilters);
     });
@@ -115,7 +117,8 @@ function setupEventListeners() {
                 document.getElementById("filterBrand")?.value ||
                 document.getElementById("filterYearFrom")?.value ||
                 document.getElementById("filterEngineFrom")?.value ||
-                document.getElementById("filterEngineTo")?.value
+                document.getElementById("filterEngineTo")?.value ||
+                document.getElementById("toggleShowFavorites")?.checked
             );
             updateCounter(filteredMotorcycles.length, hasFilters);
         }, 150);

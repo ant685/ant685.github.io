@@ -155,6 +155,12 @@ function createCard(moto) {
     const imgSrc   = `images/lot${moto.lot}/1.jpg`;
     const fallback = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%2311141a"/><text x="150" y="105" fill="%238e8e93" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">MOTOBY</text></svg>`;
 
+    const isFav = Favorites.has(moto.lot);
+    const heartSVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path class="heart-outline" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <path class="heart-filled" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>`;
+
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
@@ -165,6 +171,7 @@ function createCard(moto) {
                 <div class="card-badge-left">
                     <span class="badge ${badgeCls}">${statusLabel}</span>
                 </div>
+                <button class="fav-btn${isFav ? " active" : ""}" data-lot="${moto.lot}" aria-label="Add to favorites" type="button">${heartSVG}</button>
             </div>
             <div class="card-info">
                 <div class="card-title-row">
@@ -196,6 +203,20 @@ function createCard(moto) {
             img.src = fallback;
             img.classList.add("loaded");
             if (sk) sk.style.display = "none";
+        });
+    }
+
+    const favBtn = card.querySelector(".fav-btn");
+    if (favBtn) {
+        favBtn.addEventListener("click", e => {
+            e.preventDefault();
+            e.stopPropagation();
+            const added = Favorites.toggle(moto.lot);
+            favBtn.classList.toggle("active", added);
+            const favToggle = document.getElementById("toggleShowFavorites");
+            if (favToggle?.checked && !added) {
+                applyFilters();
+            }
         });
     }
 

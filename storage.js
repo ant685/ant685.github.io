@@ -11,6 +11,7 @@ function saveSessionState() {
             engineFrom:   document.getElementById("filterEngineFrom")?.value  || "",
             engineTo:     document.getElementById("filterEngineTo")?.value    || "",
             showSold:     document.getElementById("toggleShowSold")?.checked  || false,
+            showFavorites:document.getElementById("toggleShowFavorites")?.checked || false,
             displayCount: displayCount
         }));
     } catch (_) {}
@@ -34,4 +35,6 @@ function restoreFilterValues(state) {
     setEl("filterEngineTo",   state.engineTo);
     const tog = document.getElementById("toggleShowSold");
     if (tog) tog.checked = !!state.showSold;
+    const togFav = document.getElementById("toggleShowFavorites");
+    if (togFav) togFav.checked = !!state.showFavorites;
 }

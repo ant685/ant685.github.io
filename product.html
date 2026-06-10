@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="catalog.css">
     <link rel="stylesheet" href="product.css">
     <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="favorites.css">
     <link rel="stylesheet" href="responsive.css">
 </head>
 <body class="product-page">
@@ -71,6 +72,12 @@
                     </button>
                     <button class="gallery-arrow gallery-arrow-right" id="galleryNextBtn" aria-label="Next">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                    </button>
+                    <button class="fav-btn fav-btn-product" id="productFavBtn" aria-label="Add to favorites" type="button">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="heart-outline" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            <path class="heart-filled" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
                     </button>
                 </div>
                 <div class="gallery-thumbs-container" id="galleryThumbs"></div>
@@ -187,6 +194,7 @@
     <div class="toast" id="toastMessage"></div>
 
     <script src="config.js"></script>
+    <script src="favorites.js"></script>
     <script src="translations.js"></script>
     <script src="language.js"></script>
     <script src="gallery.js"></script>
