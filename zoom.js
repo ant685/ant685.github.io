@@ -70,6 +70,14 @@ function resetZoomState(animated) {
 }
 
 function onLbTouchStart(e) {
+    // Always allow UI controls (close / arrows) to receive taps,
+    // even when the image is zoomed/panning/pinching.
+    // Otherwise preventDefault() below can cancel the click.
+    const ctrl = e.target && e.target.closest && e.target.closest(
+        "#lightboxCloseBtn, #lightboxPrevBtn, #lightboxNextBtn"
+    );
+    if (ctrl) return;
+
     const t = e.touches;
 
     if (t.length === 2) {
@@ -154,6 +162,12 @@ function onLbTouchStart(e) {
 function onLbTouchMove(e) {
     const t = e.touches;
 
+    // Don't interfere with gestures that start on UI controls
+    const ctrl = e.target && e.target.closest && e.target.closest(
+        "#lightboxCloseBtn, #lightboxPrevBtn, #lightboxNextBtn"
+    );
+    if (ctrl) return;
+
     if (isPinching && t.length >= 2) {
         e.preventDefault();
         const dist     = zPinchDist(t[0], t[1]);
@@ -189,6 +203,12 @@ function onLbTouchMove(e) {
 }
 
 function onLbTouchEnd(e) {
+    // If the interaction was with UI controls, don't run gesture logic.
+    const ctrl = e.target && e.target.closest && e.target.closest(
+        "#lightboxCloseBtn, #lightboxPrevBtn, #lightboxNextBtn"
+    );
+    if (ctrl) return;
+
     const remaining = e.touches.length;
 
     if (remaining === 0) {
