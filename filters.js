@@ -16,9 +16,21 @@ function buildBrandFilter() {
     _renderBrandDropdown(brands);
 }
 
+function _brandCounts() {
+    // Counts over the full catalog (independent of active filters).
+    const counts = Object.create(null);
+    for (const m of allMotorcycles) {
+        const b = m.brand;
+        if (b && b !== "NA") counts[b] = (counts[b] || 0) + 1;
+    }
+    return counts;
+}
+
 function _renderBrandDropdown(brands) {
     const wrapper = document.getElementById("brandDropdownWrapper");
     if (!wrapper) return;
+
+    const counts = _brandCounts();
 
     wrapper.innerHTML = `
         <button type="button" class="brand-dropdown-btn" id="brandDropdownBtn" aria-haspopup="listbox" aria-expanded="false">
@@ -34,6 +46,7 @@ function _renderBrandDropdown(brands) {
             <div class="brand-dropdown-item" data-brand="${b}" id="brandItem_${i}">
                 <input type="checkbox" id="brandChk_${i}">
                 <label for="brandChk_${i}">${b}</label>
+                <span class="brand-count">(${counts[b] || 0})</span>
             </div>`).join("")}
         </div>`;
 
