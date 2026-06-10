@@ -6,7 +6,7 @@ function saveSessionState() {
         sessionStorage.setItem("motoby_catalog_state", JSON.stringify({
             scrollY:      window.scrollY,
             search:       document.getElementById("searchInput")?.value      || "",
-            brand:        document.getElementById("filterBrand")?.value       || "",
+            brands:       typeof _selectedBrands !== "undefined" ? [..._selectedBrands] : [],
             yearFrom:     document.getElementById("filterYearFrom")?.value    || "",
             engineFrom:   document.getElementById("filterEngineFrom")?.value  || "",
             engineTo:     document.getElementById("filterEngineTo")?.value    || "",
@@ -29,7 +29,6 @@ function getSavedState() {
 function restoreFilterValues(state) {
     const setEl = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
     setEl("searchInput",      state.search);
-    setEl("filterBrand",      state.brand);
     setEl("filterYearFrom",   state.yearFrom);
     setEl("filterEngineFrom", state.engineFrom);
     setEl("filterEngineTo",   state.engineTo);
@@ -37,4 +36,10 @@ function restoreFilterValues(state) {
     if (tog) tog.checked = !!state.showSold;
     const togFav = document.getElementById("toggleShowFavorites");
     if (togFav) togFav.checked = !!state.showFavorites;
+    if (state.brands && Array.isArray(state.brands) && typeof _selectedBrands !== "undefined") {
+        _selectedBrands.clear();
+        state.brands.forEach(b => _selectedBrands.add(b));
+        if (typeof _syncBrandCheckboxes === "function") _syncBrandCheckboxes();
+        if (typeof _updateBrandBtnLabel === "function") _updateBrandBtnLabel();
+    }
 }

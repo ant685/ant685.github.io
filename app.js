@@ -19,8 +19,10 @@ registerTranslationHook(() => {
         if (el && val !== key) el.placeholder = val;
     }
 
-    const sel = document.getElementById("filterBrand");
-    if (sel?.options[0]) sel.options[0].textContent = tr("brand_filter_all");
+    // Update "All Brands" text and btn label in brand dropdown
+    const allLbl = document.querySelector("#brandItemAll label");
+    if (allLbl) allLbl.textContent = tr("brand_filter_all");
+    if (typeof _updateBrandBtnLabel === "function") _updateBrandBtnLabel();
 
     updateToggleLabel();
 });
@@ -29,7 +31,7 @@ registerLanguageChangeHook(() => {
     renderCatalog(); // re-render so status labels update
     const hasFilters = !!(
         (document.getElementById("searchInput")?.value || "").trim() ||
-        document.getElementById("filterBrand")?.value ||
+        (typeof _selectedBrands !== "undefined" && _selectedBrands.size > 0) ||
         document.getElementById("filterYearFrom")?.value ||
         document.getElementById("filterEngineFrom")?.value ||
         document.getElementById("filterEngineTo")?.value ||
@@ -89,7 +91,6 @@ function setupEventListeners() {
 
     [
         { id: "searchInput",      ev: "input"  },
-        { id: "filterBrand",      ev: "change" },
         { id: "filterYearFrom",   ev: "input"  },
         { id: "filterEngineFrom", ev: "input"  },
         { id: "filterEngineTo",   ev: "input"  },
@@ -101,6 +102,12 @@ function setupEventListeners() {
 
     document.getElementById("btnResetFilters")?.addEventListener("click", resetFilters);
     document.getElementById("btnLoadMore")?.addEventListener("click", loadMore);
+
+    // Close brand dropdown on outside click
+    document.addEventListener("click", e => {
+        const wrapper = document.getElementById("brandDropdownWrapper");
+        if (wrapper && !wrapper.contains(e.target)) _closeBrandDropdown();
+    });
 
     // Save catalog state when navigating to a product card
     document.getElementById("catalogGrid")?.addEventListener("click", e => {
@@ -114,7 +121,7 @@ function setupEventListeners() {
             updateToggleLabel();
             const hasFilters = !!(
                 (document.getElementById("searchInput")?.value || "").trim() ||
-                document.getElementById("filterBrand")?.value ||
+                (typeof _selectedBrands !== "undefined" && _selectedBrands.size > 0) ||
                 document.getElementById("filterYearFrom")?.value ||
                 document.getElementById("filterEngineFrom")?.value ||
                 document.getElementById("filterEngineTo")?.value ||
