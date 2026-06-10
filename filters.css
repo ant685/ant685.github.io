@@ -9,6 +9,8 @@ main {
 
 /* ─── Search & Filters ──────────────────────────────── */
 .search-filter-section {
+    position: relative;
+    z-index: 10;
     margin-top: 25px;
     border-radius: 20px;
     padding: 20px;
