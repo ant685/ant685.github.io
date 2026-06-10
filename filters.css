@@ -113,6 +113,16 @@ main {
     transform: translateY(-1px);
 }
 
+/* Favorites cell inside filters-grid */
+.filter-favorites-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    padding-left: 4px;
+    user-select: none;
+}
+
 /* iOS-style toggle */
 .toggle-wrapper {
     display: flex;

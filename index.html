@@ -80,17 +80,19 @@
                     </svg>
                     <span data-i18n="reset_filters">Reset Filters</span>
                 </button>
+                <div class="filter-favorites-cell">
+                    <label class="switch">
+                        <input type="checkbox" id="toggleShowFavorites">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label" data-i18n="show_favorites">Favorites</span>
+                </div>
                 <div class="toggle-wrapper">
                     <label class="switch">
                         <input type="checkbox" id="toggleShowSold">
                         <span class="slider"></span>
                     </label>
                     <span class="toggle-label" data-i18n="show_sold">Show Sold</span>
-                    <label class="switch" style="margin-left:16px">
-                        <input type="checkbox" id="toggleShowFavorites">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="toggle-label" data-i18n="show_favorites">Favorites</span>
                     <div id="resultsCounter" class="results-counter"></div>
                 </div>
             </div>

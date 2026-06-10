@@ -69,7 +69,7 @@ function loadConfiguration() {
 }
 
 function updateToggleLabel() {
-    const el = document.querySelector(".toggle-label");
+    const el = document.querySelector(".toggle-wrapper .toggle-label");
     if (!el) return;
     const val = tr("show_sold");
     if (activeLanguage !== "EN" && window.innerWidth < 768) {
