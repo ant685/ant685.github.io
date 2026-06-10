@@ -209,7 +209,7 @@ function applyFilters() {
         return true;
     });
 
-    const hasFilters = !!(q || brand || yearFrom || engFrom || engTo || showFavs);
+    const hasFilters = !!(q || _selectedBrands.size > 0 || yearFrom || engFrom || engTo || showFavs);
     updateCounter(filteredMotorcycles.length, hasFilters);
 
     const pageSize = getPageSize();
