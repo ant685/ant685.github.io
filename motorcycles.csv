@@ -156,7 +156,7 @@ lot,brand,model,year,engine_cc,mileage,location,status,condition,price,descripti
 88,Triumph,Sprint St,2008,1050,35000,BY,sold,no_known_issues,NA,NA
 89,Honda,Cbf 600,2010,600,32000,BY,sold,no_known_issues,NA,NA
 90,Suzuki,Bandit 600,2003,600,35000,BY,sold,no_known_issues,NA,NA
-92,Honda,CBF600,2006,NA,49000,BY,sold,no_known_issues,NA,NA
+92,Honda,CBF600,2006,600,49000,BY,sold,no_known_issues,NA,NA
 95,Honda,CB1000,2015,1000,35500,BY,sold,no_known_issues,NA,NA
 96,Kawasaki,Z7S,2003,700,40000,BY,sold,no_known_issues,NA,NA
 98,Kawasaki,Z750,2009,750,31000,BY,sold,no_known_issues,NA,NA
@@ -167,4 +167,4 @@ lot,brand,model,year,engine_cc,mileage,location,status,condition,price,descripti
 56,Suzuki,SV50,2003,650,NA,BY,sold,no_known_issues,NA,NA
 58,Honda,Crosstourer,2012,800,23000,BY,sold,no_known_issues,NA,NA
 63,Honda,Cbr 125,NA,125,NA,BY,sold,no_known_issues,NA,NA
-74,Bmv,GS1200,2006,1200,31000,BY,sold,no_known_issues,NA,NA
+74,BMW,GS1200,2006,1200,31000,BY,sold,no_known_issues,NA,NA
