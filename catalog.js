@@ -153,7 +153,12 @@ function createCard(moto) {
         : "";
 
     const imgSrc   = `images/lot${moto.lot}/1.jpg`;
-    const fallback = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%2311141a"/><text x="150" y="105" fill="%238e8e93" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">MOTOBY</text></svg>`;
+    const fallbackDark  = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%2311141a"/><text x="150" y="105" fill="%238e8e93" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">MOTOBY</text></svg>`;
+    const fallbackLight = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%23e6e8eb"/><text x="150" y="105" fill="%236b6b70" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">MOTOBY</text></svg>`;
+
+    const getFallback = () => {
+        return document.documentElement.getAttribute("data-theme") === "light" ? fallbackLight : fallbackDark;
+    };
 
     const isFav = Favorites.has(moto.lot);
     const heartSVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +205,8 @@ function createCard(moto) {
             if (sk) sk.style.display = "none";
         });
         img.addEventListener("error", () => {
-            img.src = fallback;
+            img.dataset.fallback = "1";
+            img.src = getFallback();
             img.classList.add("loaded");
             if (sk) sk.style.display = "none";
         });
@@ -222,3 +228,15 @@ function createCard(moto) {
 
     return card;
 }
+
+// Update fallbacks when the user switches theme
+window.addEventListener("motoby:themechange", () => {
+    const imgs = document.querySelectorAll("img.card-img[data-fallback='1']");
+    for (let i = 0; i < imgs.length; i++) {
+        const img = imgs[i];
+        const isLight = document.documentElement.getAttribute("data-theme") === "light";
+        img.src = isLight ?
+            `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%23e6e8eb"/><text x="150" y="105" fill="%236b6b70" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">MOTOBY</text></svg>` :
+            `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%2311141a"/><text x="150" y="105" fill="%238e8e93" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">MOTOBY</text></svg>`;
+    }
+});

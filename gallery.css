@@ -9,7 +9,7 @@
     padding-top: 66.67%;
     border-radius: 20px;
     overflow: hidden;
-    background: #0c0c0e;
+    background: var(--bg-gallery);
 }
 
 /* Transition: opacity for smooth image switching */
@@ -45,7 +45,7 @@
 
 .gallery-arrow:hover {
     background: var(--color-accent);
-    color: #000;
+    color: var(--text-on-accent);
     opacity: 1;
     transform: translateY(-50%) scale(1.05);
 }
@@ -71,7 +71,7 @@
     border: 2px solid transparent;
     opacity: 0.6;
     transition: border-color 0.15s ease, opacity 0.15s ease;
-    background: #0a0a0c;
+    background: var(--bg-thumb);
 }
 
 .thumb-item.active { border-color: var(--color-accent); opacity: 1; }
@@ -141,7 +141,7 @@
     transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
-.lightbox-close:hover { background: var(--color-accent); color: #000; transform: scale(1.05); }
+.lightbox-close:hover { background: var(--color-accent); color: var(--text-on-accent); transform: scale(1.05); }
 
 .lightbox-arrow {
     position: absolute;
@@ -161,7 +161,7 @@
     transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
-.lightbox-arrow:hover { background: var(--color-accent); color: #000; transform: translateY(-50%) scale(1.05); }
+.lightbox-arrow:hover { background: var(--color-accent); color: var(--text-on-accent); transform: translateY(-50%) scale(1.05); }
 .lightbox-arrow-left  { left: 25px; }
 .lightbox-arrow-right { right: 25px; }
 

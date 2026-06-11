@@ -2,20 +2,55 @@
 
 /* =====================================================
    MOTOBY — Style Sheet
-   Dark premium theme · Orange accent #F03C1A
+   Dark premium theme (default) · Light theme via html[data-theme="light"]
+   Accent: orange #F03C1A (dark) / muted green rgb(104,150,135) (light)
    ===================================================== */
 
 :root {
-    --bg-base:        #000000;
-    --bg-card:        #0c0c0d;
-    --border-color:   rgba(255, 255, 255, 0.05);
-    --border-hover:   rgba(240, 60, 26, 0.4);
+    /* ─── Accent (theme-dependent, expressed as RGB channels) ─── */
+    --accent-rgb:     240, 60, 26;
+    --color-accent:   rgb(var(--accent-rgb));
+    --border-hover:   rgba(var(--accent-rgb), 0.4);
+    --text-on-accent: #000000;   /* text/icons placed on an accent fill */
 
+    /* ─── Solid surfaces ─── */
+    --bg-base:         #000000;
+    --bg-card:         #0c0c0d;
+    --bg-elevated:     #141416;  /* dropdown menus / popovers */
+    --bg-solid:        #1c1c1e;  /* opaque chips shown over photos */
+    --bg-gallery:      #0c0c0e;
+    --bg-thumb:        #0a0a0c;
+    --img-placeholder: #000000;  /* behind images before they load */
+
+    /* ─── Header / glass ─── */
+    --glass-bg:        rgba(15, 15, 18, 0.7);
+    --header-bg:       rgba(10, 10, 12, 0.92);
+    --header-border:   rgba(255, 255, 255, 0.1);
+    --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+
+    /* ─── Translucent surfaces (inputs, controls) ─── */
+    --surface-1:      rgba(255, 255, 255, 0.04);
+    --surface-2:      rgba(255, 255, 255, 0.06);
+    --surface-3:      rgba(255, 255, 255, 0.08);
+    --surface-track:  rgba(255, 255, 255, 0.12);  /* toggle off-state track */
+    --knob:           #ffffff;                    /* toggle knob */
+
+    /* ─── Borders ─── */
+    --border-color:   rgba(255, 255, 255, 0.05);
+    --border-subtle:  rgba(255, 255, 255, 0.04);
+    --border-strong:  rgba(255, 255, 255, 0.15);
+    --hairline:       rgba(255, 255, 255, 0.07);
+
+    /* ─── Skeleton shimmer ─── */
+    --shimmer-1:      rgba(255, 255, 255, 0.03);
+    --shimmer-2:      rgba(255, 255, 255, 0.07);
+
+    /* ─── Text ─── */
     --text-primary:   #ffffff;
     --text-secondary: #8e8e93;
     --text-muted:     #55555c;
 
-    --color-accent:   #f03c1a;
+    /* ─── Semantic colors (theme-independent) ─── */
     --color-green:    #30d158;
     --color-orange:   #ff9f0a;
     --color-blue:     #0a84ff;
@@ -26,7 +61,47 @@
     --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
     --shadow:       0 8px 24px rgba(0, 0, 0, 0.6);
-    --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(240, 60, 26, 0.05);
+    --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(var(--accent-rgb), 0.05);
+}
+
+/* ─── Light theme overrides ─────────────────────────── */
+html[data-theme="light"] {
+    --accent-rgb:     104, 150, 135;
+    --text-on-accent: #ffffff;
+
+    --bg-base:         #eef0f2;
+    --bg-card:         #ffffff;
+    --bg-elevated:     #ffffff;
+    --bg-solid:        #ffffff;
+    --bg-gallery:      #e6e8eb;
+    --bg-thumb:        #e6e8eb;
+    --img-placeholder: #e6e8eb;
+
+    --glass-bg:        rgba(255, 255, 255, 0.72);
+    --header-bg:       rgba(255, 255, 255, 0.92);
+    --header-border:   rgba(0, 0, 0, 0.08);
+    --scrollbar-thumb: rgba(0, 0, 0, 0.22);
+
+    --surface-1:      rgba(0, 0, 0, 0.04);
+    --surface-2:      rgba(0, 0, 0, 0.06);
+    --surface-3:      rgba(0, 0, 0, 0.09);
+    --surface-track:  rgba(0, 0, 0, 0.18);
+    --knob:           #ffffff;
+
+    --border-color:   rgba(0, 0, 0, 0.10);
+    --border-subtle:  rgba(0, 0, 0, 0.07);
+    --border-strong:  rgba(0, 0, 0, 0.18);
+    --hairline:       rgba(0, 0, 0, 0.08);
+
+    --shimmer-1:      rgba(0, 0, 0, 0.04);
+    --shimmer-2:      rgba(0, 0, 0, 0.08);
+
+    --text-primary:   #1c1c1e;
+    --text-secondary: #6b6b70;
+    --text-muted:     #9a9aa0;
+
+    --shadow:       0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.18), 0 0 20px rgba(var(--accent-rgb), 0.10);
 }
 
 /* ─── Reset ─────────────────────────────────────────── */
@@ -51,6 +126,7 @@ body {
     overflow-x: hidden;
     padding-bottom: 80px;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -58,12 +134,12 @@ a { color: inherit; text-decoration: none; }
 /* ─── Scrollbar ─────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-base); }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
 
 /* ─── Glass panel ───────────────────────────────────── */
 .glass-panel {
-    background: rgba(15, 15, 18, 0.7);
+    background: var(--glass-bg);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid var(--border-color);

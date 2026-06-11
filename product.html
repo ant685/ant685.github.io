@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MOTOBY - Lot Details</title>
     <link rel="icon" type="image/png" href="logo.png">
+    <!-- Set the theme before stylesheets load to avoid a flash of the wrong theme -->
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="filters.css">
@@ -42,14 +44,24 @@
 
             <div class="header-brand">
                 <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="MOTOBY" class="logo-img">
+                    <img src="logo.png" alt="MOTOBY" class="logo-img" data-theme-logo>
                 </a>
             </div>
 
-            <div class="lang-switcher">
-                <button class="lang-btn" data-lang="RU">RU</button>
-                <button class="lang-btn" data-lang="EN">EN</button>
-                <button class="lang-btn" data-lang="PL">PL</button>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM3 11h2a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2zm16 0h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2zM5.64 5.64a1 1 0 0 1 1.42 0l1.41 1.41a1 1 0 0 1-1.41 1.42L5.64 7.05a1 1 0 0 1 0-1.41zm9.89 9.89a1 1 0 0 1 1.42 0l1.41 1.41a1 1 0 0 1-1.41 1.42l-1.42-1.42a1 1 0 0 1 0-1.41zM18.36 5.64a1 1 0 0 1 0 1.41l-1.41 1.42a1 1 0 0 1-1.42-1.42l1.42-1.41a1 1 0 0 1 1.41 0zM8.47 15.53a1 1 0 0 1 0 1.41l-1.41 1.42a1 1 0 0 1-1.42-1.42l1.42-1.41a1 1 0 0 1 1.41 0z"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M21.75 14.4a1 1 0 0 0-1.05-.27 7.5 7.5 0 0 1-9.83-9.83 1 1 0 0 0-1.32-1.32 9.5 9.5 0 1 0 12.47 12.47 1 1 0 0 0-.27-1.05z"/>
+                    </svg>
+                </button>
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="RU">RU</button>
+                    <button class="lang-btn" data-lang="EN">EN</button>
+                    <button class="lang-btn" data-lang="PL">PL</button>
+                </div>
             </div>
         </div>
     </header>

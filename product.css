@@ -62,7 +62,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 6px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border-subtle);
     font-size: 0.95rem;
 }
 
@@ -100,13 +100,13 @@
 .btn-whatsapp:hover  { background: #1eb954; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
 
 .btn-share {
-    background: rgba(255,255,255,0.05);
+    background: var(--surface-1);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
 }
 
 .btn-share:hover {
-    background: rgba(255,255,255,0.1);
+    background: var(--surface-3);
     border-color: var(--color-accent);
     color: var(--color-accent);
     transform: translateY(-2px);
@@ -122,12 +122,12 @@
     left: 50%;
     transform: translateX(-50%) translateY(80px);
     background: var(--color-accent);
-    color: #000;
+    color: var(--text-on-accent);
     padding: 12px 28px;
     border-radius: 30px;
     font-weight: 700;
     font-size: 0.9rem;
-    box-shadow: 0 10px 30px rgba(240,60,26,0.3);
+    box-shadow: 0 10px 30px rgba(var(--accent-rgb),0.3);
     z-index: 2000;
     opacity: 0;
     pointer-events: none;

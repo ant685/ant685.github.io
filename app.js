@@ -48,7 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCatalogData().catch(err => console.error("Catalog load failed:", err));
     setupScrollHandler();
     setupHeaderContacts();
+    setupThemeLogo();
 });
+
+function setupThemeLogo() {
+    const logo = document.querySelector("img[data-theme-logo]");
+    if (!logo) return;
+
+    const update = () => {
+        const isLight = document.documentElement.getAttribute("data-theme") === "light";
+        logo.src = isLight ? "logo-light.png" : "logo.png";
+    };
+
+    update();
+    window.addEventListener("motoby:themechange", update);
+}
 
 function loadConfiguration() {
     const cfg = window.CONFIG || {};

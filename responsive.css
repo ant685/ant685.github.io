@@ -6,9 +6,18 @@
 }
 
 @media (max-width: 600px) {
-    .header-container { padding: 6px 12px 6px 6px; height: 56px; }
+    .header-container { padding: 6px 4px 6px 6px; height: 56px; }
     .logo-link { height: 44px; }
-    .lang-btn { min-width: 28px; font-size: 0.65rem; }
+    .lang-btn { min-width: 26px; font-size: 0.70rem; }
+    .header-controls { gap: 4px; }
+    .theme-toggle { width: 30px; height: 30px; }
+    .theme-toggle svg { width: 16px; height: 16px; }
+
+    /* Match the collapsed contact icon size with the theme toggle */
+    .contacts.icon-only .contact-link {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 @media (max-width: 767px) {
