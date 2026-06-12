@@ -222,9 +222,6 @@ function applyFilters() {
         return true;
     });
 
-    // Auto-sort by lot number (toggled via CONFIG.sortByLot in config.js).
-    sortByLotNumber(filteredMotorcycles);
-
     const hasFilters = !!(q || _selectedBrands.size > 0 || yearFrom || engFrom || engTo || showFavs);
     updateCounter(filteredMotorcycles.length, hasFilters);
 
