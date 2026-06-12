@@ -3,10 +3,14 @@
 
 let galleryImages   = [];
 let activeImageIdx  = 0;
+let galleryLotId    = null;        // current lot — used to regenerate the placeholder on theme change
+let galleryIsPlaceholder = false;  // true when the lot has no real photos and we're showing the LOT placeholder
 
 async function loadGallery(lotId) {
     galleryImages  = [];
     activeImageIdx = 0;
+    galleryLotId   = lotId;
+    galleryIsPlaceholder = false;
 
     const thumbs = document.getElementById("galleryThumbs");
     if (thumbs) thumbs.innerHTML = "";
@@ -28,6 +32,7 @@ async function loadGallery(lotId) {
     }
 
     if (galleryImages.length === 0) {
+        galleryIsPlaceholder = true;
         galleryImages.push(makePlaceholder(lotId));
     }
 
@@ -44,7 +49,12 @@ function probeImage(url) {
 }
 
 function makePlaceholder(lotId) {
-    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%2311141a"/><text x="300" y="210" fill="%238e8e93" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">LOT ${lotId}</text></svg>`;
+    // Theme-aware placeholder (matches the catalog cards on the main page):
+    // light theme uses light surface colours, dark theme uses dark ones.
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    const bg   = isLight ? "%23e6e8eb" : "%2311141a";
+    const text = isLight ? "%236b6b70" : "%238e8e93";
+    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="${bg}"/><text x="300" y="210" fill="${text}" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">LOT ${lotId}</text></svg>`;
 }
 
 function renderGallery() {
@@ -96,3 +106,12 @@ function selectImage(index) {
 
 function nextImage() { selectImage((activeImageIdx + 1) % galleryImages.length); }
 function prevImage() { selectImage((activeImageIdx - 1 + galleryImages.length) % galleryImages.length); }
+
+// When the user switches theme, regenerate the no-photo placeholder so its
+// background matches the active dark/light theme (same behaviour as catalog cards).
+window.addEventListener("motoby:themechange", () => {
+    if (!galleryIsPlaceholder) return;
+    galleryImages  = [makePlaceholder(galleryLotId)];
+    activeImageIdx = 0;
+    renderGallery();
+});

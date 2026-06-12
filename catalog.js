@@ -5,6 +5,24 @@ let allMotorcycles  = [];
 let filteredMotorcycles = [];
 let displayCount    = 0;
 
+// Sort the catalog list by lot number in place.
+// Controlled entirely by the CONFIG.sortByLot switch in config.js — when it's
+// off the original CSV order is preserved. Non-numeric lot ids go last.
+function sortByLotNumber(list) {
+    const cfg = window.CONFIG || {};
+    if (!cfg.sortByLot) return list;
+    const dir = cfg.sortByLotDirection === "asc" ? 1 : -1;
+    return list.sort((a, b) => {
+        const la = parseInt(a.lot, 10);
+        const lb = parseInt(b.lot, 10);
+        const aNaN = isNaN(la), bNaN = isNaN(lb);
+        if (aNaN && bNaN) return 0;
+        if (aNaN) return 1;
+        if (bNaN) return -1;
+        return (la - lb) * dir;
+    });
+}
+
 async function loadCatalogData() {
     try {
         const res = await fetch("motorcycles.csv");
