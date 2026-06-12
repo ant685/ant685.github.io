@@ -32,3 +32,8 @@
 @media (min-width: 992px) {
     .product-layout { grid-template-columns: 1.4fr 1fr; gap: 40px; }
 }
+
+/* Top "back to catalog" button: right-aligned on mobile, centered on desktop */
+@media (min-width: 768px) {
+    .product-page .back-container { justify-content: center; }
+}

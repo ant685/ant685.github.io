@@ -3,10 +3,14 @@
 
 let galleryImages   = [];
 let activeImageIdx  = 0;
+let galleryLotId    = null;   // remembers the current lot for theme-aware placeholders
+let galleryIsPlaceholder = false; // true when no real photos exist and a placeholder is shown
 
 async function loadGallery(lotId) {
     galleryImages  = [];
     activeImageIdx = 0;
+    galleryLotId   = lotId;
+    galleryIsPlaceholder = false;
 
     const thumbs = document.getElementById("galleryThumbs");
     if (thumbs) thumbs.innerHTML = "";
@@ -28,6 +32,7 @@ async function loadGallery(lotId) {
     }
 
     if (galleryImages.length === 0) {
+        galleryIsPlaceholder = true;
         galleryImages.push(makePlaceholder(lotId));
     }
 
@@ -44,7 +49,11 @@ function probeImage(url) {
 }
 
 function makePlaceholder(lotId) {
-    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%2311141a"/><text x="300" y="210" fill="%238e8e93" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">LOT ${lotId}</text></svg>`;
+    // Adapt the no-photo placeholder to the active theme (same palette as the catalog cards)
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    const bgFill   = isLight ? "%23e6e8eb" : "%2311141a";
+    const textFill = isLight ? "%236b6b70" : "%238e8e93";
+    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="${bgFill}"/><text x="300" y="210" fill="${textFill}" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">LOT ${lotId}</text></svg>`;
 }
 
 function renderGallery() {
@@ -96,3 +105,14 @@ function selectImage(index) {
 
 function nextImage() { selectImage((activeImageIdx + 1) % galleryImages.length); }
 function prevImage() { selectImage((activeImageIdx - 1 + galleryImages.length) % galleryImages.length); }
+
+// Keep the no-photo placeholder in sync when the user switches theme
+window.addEventListener("motoby:themechange", () => {
+    if (!galleryIsPlaceholder || galleryLotId === null) return;
+    const ph = makePlaceholder(galleryLotId);
+    galleryImages = [ph];
+    const mainImg = document.getElementById("mainGalleryImg");
+    if (mainImg) mainImg.src = ph;
+    const thumbImg = document.querySelector("#galleryThumbs .thumb-img");
+    if (thumbImg) thumbImg.src = ph;
+});
