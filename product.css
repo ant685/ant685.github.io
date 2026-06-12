@@ -31,6 +31,22 @@
     box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.3);
 }
 
+/* Back-arrow icon: vector glyph centered by the button's flex alignment, so it
+   stays aligned with the label regardless of font or language. Sized in em to
+   scale with the button's font-size. */
+.btn-back-icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+/* The product page has no footer, so the global body bottom padding
+   (base.css: body { padding-bottom: 80px }, kept for the catalog) leaves
+   artificial empty space below the last block. Remove it on this page only. */
+.product-page {
+    padding-bottom: 0;
+}
+
 .product-layout {
     display: grid;
     grid-template-columns: 1fr;
