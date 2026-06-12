@@ -5,29 +5,17 @@ let allMotorcycles  = [];
 let filteredMotorcycles = [];
 let displayCount    = 0;
 
-// Sort the catalog list by lot number in place.
-// Controlled entirely by the CONFIG.sortByLot switch in config.js — when it's
-// off the original CSV order is preserved. Non-numeric lot ids go last.
-function sortByLotNumber(list) {
-    const cfg = window.CONFIG || {};
-    if (!cfg.sortByLot) return list;
-    const dir = cfg.sortByLotDirection === "asc" ? 1 : -1;
-    return list.sort((a, b) => {
-        const la = parseInt(a.lot, 10);
-        const lb = parseInt(b.lot, 10);
-        const aNaN = isNaN(la), bNaN = isNaN(lb);
-        if (aNaN && bNaN) return 0;
-        if (aNaN) return 1;
-        if (bNaN) return -1;
-        return (la - lb) * dir;
-    });
-}
-
 async function loadCatalogData() {
     try {
         const res = await fetch("motorcycles.csv");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         allMotorcycles = parseCSV(await res.text());
+
+        // Single sort of the master array, before filters/search/pagination/Load More.
+        if (window.CONFIG && window.CONFIG.ENABLE_LOT_SORT) {
+            sortMotorcyclesByLot(allMotorcycles);
+        }
+
         buildBrandFilter();
 
         const saved = getSavedState();
@@ -88,6 +76,29 @@ function parseCSV(text) {
         if (valid && obj.lot) acc.push(obj);
         return acc;
     }, []);
+}
+
+// Parse a lot value into a number. Returns null for empty/invalid lots.
+function parseLotNumber(lot) {
+    const s = (lot == null ? "" : String(lot)).trim();
+    if (s === "") return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+}
+
+// Sort the master array in place by numeric lot descending.
+// Records with an empty or invalid lot are pushed to the end, preserving their
+// original CSV order (Array.prototype.sort is stable).
+function sortMotorcyclesByLot(list) {
+    if (!Array.isArray(list)) return;
+    list.sort((a, b) => {
+        const na = parseLotNumber(a && a.lot);
+        const nb = parseLotNumber(b && b.lot);
+        if (na === null && nb === null) return 0;
+        if (na === null) return 1;
+        if (nb === null) return -1;
+        return nb - na;
+    });
 }
 
 function getPageSize() {
