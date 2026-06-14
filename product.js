@@ -123,7 +123,27 @@ async function loadProductData() {
     }
 }
 
+// Определяем разделитель CSV по первой строке.
+// Excel в части локалей (RU/PL и др.) сохраняет CSV с разделителем ";" вместо ",".
+function detectCSVDelimiter(text) {
+    let inQ = false, commas = 0, semis = 0;
+    for (let i = 0; i < text.length; i++) {
+        const c = text[i], n = text[i + 1];
+        if (c === '"') {
+            if (inQ && n === '"') i++;
+            else inQ = !inQ;
+        } else if ((c === '\r' || c === '\n') && !inQ) {
+            break; // конец первой строки — дальше не смотрим
+        } else if (!inQ) {
+            if (c === ',') commas++;
+            else if (c === ';') semis++;
+        }
+    }
+    return semis > commas ? ';' : ',';
+}
+
 function parseCSV(text) {
+    const delim = detectCSVDelimiter(text);
     const rows = [];
     let row = [""], inQ = false;
 
@@ -132,7 +152,7 @@ function parseCSV(text) {
         if (c === '"') {
             if (inQ && n === '"') { row[row.length - 1] += '"'; i++; }
             else inQ = !inQ;
-        } else if (c === ',' && !inQ) {
+        } else if (c === delim && !inQ) {
             row.push("");
         } else if ((c === '\r' || c === '\n') && !inQ) {
             if (c === '\r' && n === '\n') i++;
