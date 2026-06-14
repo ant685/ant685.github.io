@@ -1,170 +1,170 @@
-lot,brand,model,year,engine_cc,mileage,location,status,condition,price,description
-998,Kawasaki,Z800,2016,800,NA,BY,in_transit,no_known_issues,NA,NA
-168,Yamaha,FZ1000,2007,1000,NA,DE,available,no_known_issues,NA,NA
-167,Suzuki,Bandit 650,2005,650,42000,DE,reserved,no_known_issues,NA,NA
-166,Suzuki,Intruder 800,1993,800,40000,DE,available,no_known_issues,NA,NA
-164,Honda,DN-01 NSA700A,2009,680,NA,DE,available,no_known_issues,NA,NA
-162,Kawasaki,Z1000,2007,1000,35000,BY,available,no_known_issues,NA,NA
-161,Kawasaki,Z900,2017,900,NA,BY,reserved,no_known_issues,NA,NA
-160,Kawasaki,Z800,2016,800,NA,BY,available,no_known_issues,NA,NA
-159,Yamaha,XJR1200,1998,1200,18000,DE,available,no_known_issues,NA,NA
-158,BMW,R1200GS,2006,1200,60000,DE,available,no_known_issues,NA,NA
-157,Honda,Crosstourer,2016,1200,50000,DE,available,no_known_issues,NA,NA
-154,Suzuki,Gladius,2012,650,35000,DE,available,NA,NA,NA
-152,Honda,Vision,2018,50,4000,DE,available,no_known_issues,NA,NA
-150,Honda,Varadero,2000,1000,45000,BY,available,no_known_issues,NA,NA
-147,Kawasaki,Z800,2013,800,NA,BY,available,no_known_issues,NA,NA
-142,BMW,R1100,2000,1100,65000,DE,available,no_known_issues,NA,NA
-141,Honda,VT600,1995,600,22000,DE,available,no_known_issues,NA,NA
-140,Kawasaki,Versys 1000,2014,1000,NA,BY,reserved,no_known_issues,NA,NA
-137,BMW,R1200GS,2015,1200,60000,DE,available,no_known_issues,NA,NA
-136,Honda,Forza 125,2023,125,6000,DE,available,no_known_issues,NA,NA
-135,Yamaha,XJR1200,1998,1200,63000,DE,available,no_known_issues,NA,NA
-134,Honda,CBF1000,2009,1000,9000,DE,available,no_known_issues,NA,NA
-133,Kawasaki,VN800,2001,800,33000,DE,available,no_known_issues,NA,NA
-129,Triumph,Street Triple R,2013,675,NA,BY,available,no_known_issues,NA,NA
-127,Honda,SH300,2018,300,NA,DE,available,no_known_issues,NA,NA
-126,Yamaha,FZ6S,2006,600,NA,DE,available,no_known_issues,NA,NA
-2,Triumph,Scrambler 1200 XE,2019,1200,43264,PL,available,no_known_issues,NA,NA
-7,Kawasaki,Versys,2018,1000,NA,PL,available,no_known_issues,NA,NA
-12,Yamaha,XV1600,2001,1600,40000,PL,available,no_known_issues,NA,NA
-54,Suzuki,Boulevard,2002,1400,NA,DE,available,no_known_issues,NA,NA
-69,Moto Guzzi,Breva 750,2006,750,NA,DE,available,no_known_issues,NA,NA
-100,Yamaha,XMAX,2019,125,NA,DE,available,no_known_issues,NA,NA
-101,Suzuki,TU250X,1998,250,1800,DE,available,no_known_issues,NA,NA
-109,Kawasaki,KLE500,2001,500,NA,DE,available,no_known_issues,NA,NA
-102,Triumph,Street Triple,2011,675,NA,BY,sold,no_known_issues,NA,NA
-71,Yamaha,Diversion 600S,1995,600,NA,BY,sold,no_known_issues,NA,NA
-120,Suzuki,GSF1200,2005,1200,NA,BY,sold,no_known_issues,NA,NA
-125,Yamaha,YZF1000,2003,1000,38000,BY,sold,no_known_issues,NA,NA
-132,Honda,VFR800,2003,800,28000,BY,sold,no_known_issues,NA,NA
-139,Yamaha,FZ6S,2006,600,18000,BY,sold,no_known_issues,NA,NA
-144,Suzuki,Bandit 1250,2016,1250,NA,BY,sold,no_known_issues,NA,NA
-145,Honda,CBF600,2012,600,38000,BY,sold,no_known_issues,NA,NA
-146,Kawasaki,VN1700,2009,1700,NA,BY,sold,no_known_issues,NA,NA
-153,Yamaha,TDM850,2001,850,NA,BY,sold,no_known_issues,NA,NA
-155,Yamaha,FZ6S,2007,600,27000,BY,sold,no_known_issues,NA,NA
-156,Suzuki,GSR600,2007,600,28000,BY,sold,no_known_issues,NA,NA
-163,Yamaha,Diversion 6S,2009,600,NA,BY,sold,no_known_issues,NA,NA
-165,Kawasaki,Z750,2009,750,40000,BY,sold,no_known_issues,NA,NA
-123,BMW,650 GS,2012,650,10000,BY,sold,no_known_issues,NA,NA
-148,Piaggio,MP3 300,2018,300,NA,DE,sold,no_known_issues,NA,NA
-151,Honda,CB1100,2000,1100,NA,DE,sold,no_known_issues,NA,NA
-112,Yamaha,FZ8,2011,800,24000,BY,sold,no_known_issues,NA,NA
-119,Honda,CBF1000,2010,1000,NA,BY,sold,no_known_issues,NA,NA
-121,Honda,CBF1000,2014,1000,NA,BY,sold,no_known_issues,NA,NA
-149,Kawasaki,Z1000,2007,1000,32000,BY,sold,no_known_issues,NA,NA
-99,Triumph,Sprint ST,2006,1050,44000,BY,sold,no_known_issues,NA,NA
-38,Kawasaki,ER-6,2010,650,25000,BY,sold,no_known_issues,NA,NA
-35,Kawasaki,EN500,1994,500,24177,BY,sold,no_known_issues,NA,NA
-130,Suzuki,Marauder,2004,800,41000,BY,sold,no_known_issues,NA,NA
-143,Kawasaki,Z650RS,2022,650,NA,BY,sold,no_known_issues,NA,NA
-138,Honda,CBF600,2004,600,18000,BY,sold,no_known_issues,NA,NA
-128,Yamaha,FZ6S,2005,600,32000,BY,sold,no_known_issues,NA,NA
-122,Yamaha,FZ6N,2004,600,20000,BY,sold,no_known_issues,NA,NA
-113,Honda,VFR800,2000,800,25000,BY,sold,no_known_issues,NA,NA
-93,Suzuki,GSF600,2004,600,NA,DE,sold,no_known_issues,NA,NA
-124,Kawasaki,Z750,2008,750,20000,BY,sold,no_known_issues,NA,NA
-70,Kawasaki,Z700,2003,700,NA,DE,sold,no_known_issues,NA,NA
-131,Kawasaki,ER-5,1999,500,44000,DE,sold,no_known_issues,NA,NA
-110,Yamaha,FZ1,2010,1000,19000,DE,sold,no_known_issues,NA,NA
-55,Kawasaki,Zephyr 750,1995,750,NA,DE,sold,no_known_issues,NA,NA
-118,Kawasaki,Z800,2014,800,NA,BY,sold,no_known_issues,NA,NA
-97,Honda,Varadero,2011,1000,NA,BY,sold,no_known_issues,NA,NA
-94,Honda,VFR1200,2010,1200,37000,BY,sold,no_known_issues,NA,NA
-81,Kawasaki,VN900,2006,900,32000,BY,sold,no_known_issues,NA,NA
-53,Suzuki,Bandit 650S,2005,650,20000,BY,sold,no_known_issues,NA,NA
-114,Yamaha,XT660,2006,660,NA,BY,sold,no_known_issues,NA,NA
-111,Honda,CBF1000,2009,1000,NA,BY,sold,no_known_issues,NA,NA
-103,Honda,CBF600,2010,600,13000,DE,sold,no_known_issues,NA,NA
-85,Yamaha,XJ900,1997,900,NA,DE,sold,no_known_issues,NA,NA
-115,Yamaha,YZF600,1997,600,NA,DE,sold,no_known_issues,NA,NA
-116,Honda,CBF1000,2008,1000,27000,DE,sold,no_known_issues,NA,NA
-117,Suzuki,GSF1200,2003,1200,NA,DE,sold,no_known_issues,NA,NA
-4,Yamaha,Virago,1993,535,16000,BY,sold,no_known_issues,NA,NA
-5,Kawasaki,Ninja ZX-9R,2001,900,50000,BY,sold,no_known_issues,NA,NA
-8,Honda,Hornet,2007,600,28000,BY,sold,no_known_issues,NA,NA
-13,Kawasaki,Z750,2011,750,21789,BY,sold,no_known_issues,NA,NA
-15,Yamaha,FJR,2003,1298,30000,DE,sold,no_known_issues,NA,NA
-18,Honda,NTV,1995,647,31517,BY,sold,no_known_issues,NA,NA
-19,Honda,CB750,1995,750,45618,BY,sold,no_known_issues,NA,NA
-20,Triumph,Tiger,2000,955,50000,BY,sold,needs_body_repair,NA,NA
-22,Honda,CBR1000F,1995,1000,29000,BY,sold,no_known_issues,NA,NA
-24,Suzuki,Bandit,2002,600,32000,BY,sold,no_known_issues,NA,NA
-26,Yamaha,XT600,1995,600,38485,PL,sold,no_known_issues,NA,NA
-27,Kawasaki,750,2005,750,8000,BY,sold,no_known_issues,NA,NA
-28,Kawasaki,Z750,2008,750,28500,BY,sold,no_known_issues,NA,NA
-32,Honda,VT1100,1998,1100,20549,BY,sold,no_known_issues,NA,NA
-33,Honda,VFR,2002,800,33440,BY,sold,no_known_issues,NA,NA
-34,Suzuki,DL,2004,650,15000,BY,sold,no_known_issues,NA,NA
-36,Honda,CBF600,2005,600,40000,BY,sold,no_known_issues,NA,NA
-31,Honda,CBR600RR,2003,600,12647,BY,sold,no_known_issues,NA,NA
-29,Yamaha,XT1200ZE,2017,1199,58550,DE,sold,no_known_issues,NA,NA
-42,Yamaha,XT660,2006,660,NA,DE,sold,no_known_issues,NA,NA
-6,Kawasaki,Z1000,2009,1000,28000,BY,sold,no_known_issues,NA,NA
-16,Suzuki,GSR,2006,600,39055,BY,sold,no_known_issues,NA,NA
-37,Brixton,125,2019,125,40000,DE,sold,no_known_issues,NA,NA
-41,Peugeot,Scooter Citistar RS50,2019,50,NA,DE,sold,no_known_issues,NA,NA
-9,Honda,CBR,2022,650,22000,DE,sold,no_known_issues,NA,NA
-30,Yamaha,Fazer,600,2001,45843,BY,sold,no_known_issues,NA,NA
-39,Honda,CBR600RR PC40,2009,600,NA,DE,sold,no_known_issues,NA,NA
-43,Peugeot,Satelis,2008,500,38888,DE,sold,no_known_issues,NA,NA
-45,Triumph,Sprint ST,2008,1050,50048,DE,sold,no_known_issues,NA,NA
-46,Honda,CB1000,2009,1000,13000,DE,sold,no_known_issues,NA,NA
-49,BMW,R1200GS,2005,1200,115000,DE,sold,no_known_issues,NA,NA
-52,Honda,CBF600,2010,600,17000,DE,sold,no_known_issues,NA,NA
-57,Yamaha,XT660 Tenere,2008,660,NA,DE,sold,no_known_issues,NA,NA
-1,Kawasaki,Z1000,2012,1043,43000,BY,sold,NA,NA,NA
-10,Honda,CBX1100,2000,1100,10139,BY,sold,no_known_issues,NA,NA
-48,Kawasaki,ZX636,2003,636,20000,BY,sold,no_known_issues,NA,NA
-50,Kawasaki,Z1000,2005,1000,NA,BY,sold,no_known_issues,NA,NA
-47,Suzuki,SV,2000,645,50000,DE,sold,no_known_issues,NA,NA
-21,Yamaha,MT-07,2015,690,46574,BY,sold,NA,NA,NA
-44,Suzuki,DL,2008,650,47881,BY,sold,no_known_issues,NA,NA
-40,Yamaha,MT-125,2015,125,20000,PL,sold,no_known_issues,NA,NA
-67,BMW,S1000XR,2015,1000,NA,DE,sold,no_known_issues,NA,NA
-65,Honda,CMX500A,2017,500,26000,DE,sold,no_known_issues,NA,NA
-11,Yamaha,Diversion,2013,600,50000,BY,sold,NA,NA,NA
-25,Peugeot,Tweet,2019,125,15000,DE,sold,no_known_issues,NA,NA
-23,Suzuki,Inazuma,2015,250,20000,DE,sold,no_known_issues,NA,NA
-64,Kawasaki,Z125,2020,125,NA,DE,sold,no_known_issues,NA,NA
-17,Honda,CBR1000RR SC57,2008,1000,NA,BY,sold,no_known_issues,NA,NA
-59,Yamaha,FZS600,2006,600,NA,BY,sold,no_known_issues,NA,NA
-61,Honda,RT 700,2009,700,33108,BY,sold,no_known_issues,NA,NA
-62,Triumph,Tiger 800,2013,800,18000,BY,sold,no_known_issues,NA,NA
-66,Yamaha,Fazer 600S,2010,600,NA,BY,sold,no_known_issues,NA,NA
-75,Honda,Hornet,2007,600,17000,BY,sold,no_known_issues,NA,NA
-76,Honda,CBR,2001,929,6800,BY,sold,no_known_issues,NA,NA
-78,Honda,CBF1000,2011,1000,21000,BY,sold,no_known_issues,NA,NA
-83,Honda,CB600,2003,600,NA,BY,sold,no_known_issues,NA,NA
-84,Yamaha,YZF-R6,2004,600,NA,BY,sold,no_known_issues,NA,NA
-51,Suzuki,Intruder 1400,2002,1400,NA,BY,sold,no_known_issues,NA,NA
-73,Honda,VFR800,2014,800,26000,BY,sold,no_known_issues,NA,NA
-86,Triumph,Sprint,2008,1050,NA,BY,sold,no_known_issues,NA,NA
-91,BMW,R1100R,1997,1100,NA,DE,sold,no_known_issues,NA,NA
-79,Triumph,Tiger Explorer 1200,2015,1200,45000,DE,sold,no_known_issues,NA,NA
-14,Honda,VFR,2010,1200,35000,DE,sold,no_known_issues,NA,NA
-77,Honda,CB125,2022,125,30000,DE,sold,no_known_issues,NA,NA
-82,Peugeot,Pulsion,2022,150,17590,DE,sold,no_known_issues,NA,NA
-3,Yamaha,XT660,2013,660,40000,BY,sold,no_known_issues,NA,NA
-68,Suzuki,GW250,2013,250,NA,DE,sold,no_known_issues,NA,NA
-72,Honda,CBR900,2000,900,NA,DE,sold,no_known_issues,NA,NA
-60,Kawasaki,Ninja ZX636,2004,636,NA,BY,sold,no_known_issues,NA,NA
-107,Piaggio,Vespa 125,2023,125,307,DE,sold,no_known_issues,NA,NA
-80,Suzuki,Bandit 1200,2005,1200,49000,BY,sold,no_known_issues,NA,NA
-87,Triumph,Scrambler,2010,900,15000,BY,sold,no_known_issues,NA,NA
-88,Triumph,Sprint ST,2008,1050,35000,BY,sold,no_known_issues,NA,NA
-89,Honda,CBF600,2010,600,32000,BY,sold,no_known_issues,NA,NA
-90,Suzuki,Bandit 600,2003,600,35000,BY,sold,no_known_issues,NA,NA
-92,Honda,CBF600,2006,600,49000,BY,sold,no_known_issues,NA,NA
-95,Honda,CB1000,2015,1000,35500,BY,sold,no_known_issues,NA,NA
-96,Kawasaki,Z7S,2003,700,40000,BY,sold,no_known_issues,NA,NA
-98,Kawasaki,Z750,2009,750,31000,BY,sold,no_known_issues,NA,NA
-104,Suzuki,GSX-R600,2001,600,49000,BY,sold,no_known_issues,NA,NA
-105,Yamaha,XVS950 CU,2014,950,NA,BY,sold,no_known_issues,NA,NA
-106,Honda,CBF600F,2006,600,37000,BY,sold,no_known_issues,NA,NA
-108,Honda,CBF1000,2006,1000,36000,BY,sold,no_known_issues,NA,NA
-56,Suzuki,SV650,2003,650,NA,BY,sold,no_known_issues,NA,NA
-58,Honda,Crosstourer,2012,800,23000,BY,sold,no_known_issues,NA,NA
-63,Honda,CBR125,NA,125,NA,BY,sold,no_known_issues,NA,NA
-74,BMW,R1200GS,2006,1200,31000,BY,sold,no_known_issues,NA,NA
+lot;brand;model;year;engine_cc;mileage;location;status;condition;price;description
+998;Kawasaki;Z800;2016;800;NA;BY;in_transit;no_known_issues;NA;NA
+168;Yamaha;FZ1000;2007;1000;NA;DE;available;no_known_issues;NA;NA
+167;Suzuki;Bandit 650;2005;650;42000;DE;reserved;no_known_issues;NA;NA
+166;Suzuki;Intruder 800;1993;800;40000;DE;available;no_known_issues;NA;NA
+164;Honda;DN-01 NSA700A;2009;680;NA;DE;available;no_known_issues;NA;NA
+162;Kawasaki;Z1000;2007;1000;35000;BY;available;no_known_issues;NA;NA
+161;Kawasaki;Z900;2017;900;NA;BY;reserved;no_known_issues;NA;NA
+160;Kawasaki;Z800;2016;800;NA;BY;available;no_known_issues;NA;NA
+159;Yamaha;XJR1200;1998;1200;18000;DE;available;no_known_issues;NA;NA
+158;BMW;R1200GS;2006;1200;60000;DE;available;no_known_issues;NA;NA
+157;Honda;Crosstourer;2016;1200;50000;DE;available;no_known_issues;NA;NA
+154;Suzuki;Gladius;2012;650;35000;DE;available;NA;NA;NA
+152;Honda;Vision;2018;50;4000;DE;available;no_known_issues;NA;NA
+150;Honda;Varadero;2000;1000;45000;BY;available;no_known_issues;NA;NA
+147;Kawasaki;Z800;2013;800;NA;BY;available;no_known_issues;NA;NA
+142;BMW;R1100;2000;1100;65000;DE;available;no_known_issues;NA;NA
+141;Honda;VT600;1995;600;22000;DE;available;no_known_issues;NA;NA
+140;Kawasaki;Versys 1000;2014;1000;NA;BY;reserved;no_known_issues;NA;NA
+137;BMW;R1200GS;2015;1200;60000;DE;available;no_known_issues;NA;NA
+136;Honda;Forza 125;2023;125;6000;DE;available;no_known_issues;NA;NA
+135;Yamaha;XJR1200;1998;1200;63000;DE;available;no_known_issues;NA;NA
+134;Honda;CBF1000;2009;1000;9000;DE;available;no_known_issues;NA;NA
+133;Kawasaki;VN800;2001;800;33000;DE;available;no_known_issues;NA;NA
+129;Triumph;Street Triple R;2013;675;NA;BY;available;no_known_issues;NA;NA
+127;Honda;SH300;2018;300;NA;DE;available;no_known_issues;NA;NA
+126;Yamaha;FZ6S;2006;600;NA;DE;available;no_known_issues;NA;NA
+2;Triumph;Scrambler 1200 XE;2019;1200;43264;PL;available;no_known_issues;NA;NA
+7;Kawasaki;Versys;2018;1000;NA;PL;available;no_known_issues;NA;NA
+12;Yamaha;XV1600;2001;1600;40000;PL;available;no_known_issues;NA;NA
+54;Suzuki;Boulevard;2002;1400;NA;DE;available;no_known_issues;NA;NA
+69;Moto Guzzi;Breva 750;2006;750;NA;DE;available;no_known_issues;NA;NA
+100;Yamaha;XMAX;2019;125;NA;DE;available;no_known_issues;NA;NA
+101;Suzuki;TU250X;1998;250;1800;DE;available;no_known_issues;NA;NA
+109;Kawasaki;KLE500;2001;500;NA;DE;available;no_known_issues;NA;NA
+102;Triumph;Street Triple;2011;675;NA;BY;sold;no_known_issues;NA;NA
+71;Yamaha;Diversion 600S;1995;600;NA;BY;sold;no_known_issues;NA;NA
+120;Suzuki;GSF1200;2005;1200;NA;BY;sold;no_known_issues;NA;NA
+125;Yamaha;YZF1000;2003;1000;38000;BY;sold;no_known_issues;NA;NA
+132;Honda;VFR800;2003;800;28000;BY;sold;no_known_issues;NA;NA
+139;Yamaha;FZ6S;2006;600;18000;BY;sold;no_known_issues;NA;NA
+144;Suzuki;Bandit 1250;2016;1250;NA;BY;sold;no_known_issues;NA;NA
+145;Honda;CBF600;2012;600;38000;BY;sold;no_known_issues;NA;NA
+146;Kawasaki;VN1700;2009;1700;NA;BY;sold;no_known_issues;NA;NA
+153;Yamaha;TDM850;2001;850;NA;BY;sold;no_known_issues;NA;NA
+155;Yamaha;FZ6S;2007;600;27000;BY;sold;no_known_issues;NA;NA
+156;Suzuki;GSR600;2007;600;28000;BY;sold;no_known_issues;NA;NA
+163;Yamaha;Diversion 6S;2009;600;NA;BY;sold;no_known_issues;NA;NA
+165;Kawasaki;Z750;2009;750;40000;BY;sold;no_known_issues;NA;NA
+123;BMW;650 GS;2012;650;10000;BY;sold;no_known_issues;NA;NA
+148;Piaggio;MP3 300;2018;300;NA;DE;sold;no_known_issues;NA;NA
+151;Honda;CB1100;2000;1100;NA;DE;sold;no_known_issues;NA;NA
+112;Yamaha;FZ8;2011;800;24000;BY;sold;no_known_issues;NA;NA
+119;Honda;CBF1000;2010;1000;NA;BY;sold;no_known_issues;NA;NA
+121;Honda;CBF1000;2014;1000;NA;BY;sold;no_known_issues;NA;NA
+149;Kawasaki;Z1000;2007;1000;32000;BY;sold;no_known_issues;NA;NA
+99;Triumph;Sprint ST;2006;1050;44000;BY;sold;no_known_issues;NA;NA
+38;Kawasaki;ER-6;2010;650;25000;BY;sold;no_known_issues;NA;NA
+35;Kawasaki;EN500;1994;500;24177;BY;sold;no_known_issues;NA;NA
+130;Suzuki;Marauder;2004;800;41000;BY;sold;no_known_issues;NA;NA
+143;Kawasaki;Z650RS;2022;650;NA;BY;sold;no_known_issues;NA;NA
+138;Honda;CBF600;2004;600;18000;BY;sold;no_known_issues;NA;NA
+128;Yamaha;FZ6S;2005;600;32000;BY;sold;no_known_issues;NA;NA
+122;Yamaha;FZ6N;2004;600;20000;BY;sold;no_known_issues;NA;NA
+113;Honda;VFR800;2000;800;25000;BY;sold;no_known_issues;NA;NA
+93;Suzuki;GSF600;2004;600;NA;DE;sold;no_known_issues;NA;NA
+124;Kawasaki;Z750;2008;750;20000;BY;sold;no_known_issues;NA;NA
+70;Kawasaki;Z700;2003;700;NA;DE;sold;no_known_issues;NA;NA
+131;Kawasaki;ER-5;1999;500;44000;DE;sold;no_known_issues;NA;NA
+110;Yamaha;FZ1;2010;1000;19000;DE;sold;no_known_issues;NA;NA
+55;Kawasaki;Zephyr 750;1995;750;NA;DE;sold;no_known_issues;NA;NA
+118;Kawasaki;Z800;2014;800;NA;BY;sold;no_known_issues;NA;NA
+97;Honda;Varadero;2011;1000;NA;BY;sold;no_known_issues;NA;NA
+94;Honda;VFR1200;2010;1200;37000;BY;sold;no_known_issues;NA;NA
+81;Kawasaki;VN900;2006;900;32000;BY;sold;no_known_issues;NA;NA
+53;Suzuki;Bandit 650S;2005;650;20000;BY;sold;no_known_issues;NA;NA
+114;Yamaha;XT660;2006;660;NA;BY;sold;no_known_issues;NA;NA
+111;Honda;CBF1000;2009;1000;NA;BY;sold;no_known_issues;NA;NA
+103;Honda;CBF600;2010;600;13000;DE;sold;no_known_issues;NA;NA
+85;Yamaha;XJ900;1997;900;NA;DE;sold;no_known_issues;NA;NA
+115;Yamaha;YZF600;1997;600;NA;DE;sold;no_known_issues;NA;NA
+116;Honda;CBF1000;2008;1000;27000;DE;sold;no_known_issues;NA;NA
+117;Suzuki;GSF1200;2003;1200;NA;DE;sold;no_known_issues;NA;NA
+4;Yamaha;Virago;1993;535;16000;BY;sold;no_known_issues;NA;NA
+5;Kawasaki;Ninja ZX-9R;2001;900;50000;BY;sold;no_known_issues;NA;NA
+8;Honda;Hornet;2007;600;28000;BY;sold;no_known_issues;NA;NA
+13;Kawasaki;Z750;2011;750;21789;BY;sold;no_known_issues;NA;NA
+15;Yamaha;FJR;2003;1298;30000;DE;sold;no_known_issues;NA;NA
+18;Honda;NTV;1995;647;31517;BY;sold;no_known_issues;NA;NA
+19;Honda;CB750;1995;750;45618;BY;sold;no_known_issues;NA;NA
+20;Triumph;Tiger;2000;955;50000;BY;sold;needs_body_repair;NA;NA
+22;Honda;CBR1000F;1995;1000;29000;BY;sold;no_known_issues;NA;NA
+24;Suzuki;Bandit;2002;600;32000;BY;sold;no_known_issues;NA;NA
+26;Yamaha;XT600;1995;600;38485;PL;sold;no_known_issues;NA;NA
+27;Kawasaki;750;2005;750;8000;BY;sold;no_known_issues;NA;NA
+28;Kawasaki;Z750;2008;750;28500;BY;sold;no_known_issues;NA;NA
+32;Honda;VT1100;1998;1100;20549;BY;sold;no_known_issues;NA;NA
+33;Honda;VFR;2002;800;33440;BY;sold;no_known_issues;NA;NA
+34;Suzuki;DL;2004;650;15000;BY;sold;no_known_issues;NA;NA
+36;Honda;CBF600;2005;600;40000;BY;sold;no_known_issues;NA;NA
+31;Honda;CBR600RR;2003;600;12647;BY;sold;no_known_issues;NA;NA
+29;Yamaha;XT1200ZE;2017;1199;58550;DE;sold;no_known_issues;NA;NA
+42;Yamaha;XT660;2006;660;NA;DE;sold;no_known_issues;NA;NA
+6;Kawasaki;Z1000;2009;1000;28000;BY;sold;no_known_issues;NA;NA
+16;Suzuki;GSR;2006;600;39055;BY;sold;no_known_issues;NA;NA
+37;Brixton;125;2019;125;40000;DE;sold;no_known_issues;NA;NA
+41;Peugeot;Scooter Citistar RS50;2019;50;NA;DE;sold;no_known_issues;NA;NA
+9;Honda;CBR;2022;650;22000;DE;sold;no_known_issues;NA;NA
+30;Yamaha;Fazer;600;2001;45843;BY;sold;no_known_issues;NA;NA
+39;Honda;CBR600RR PC40;2009;600;NA;DE;sold;no_known_issues;NA;NA
+43;Peugeot;Satelis;2008;500;38888;DE;sold;no_known_issues;NA;NA
+45;Triumph;Sprint ST;2008;1050;50048;DE;sold;no_known_issues;NA;NA
+46;Honda;CB1000;2009;1000;13000;DE;sold;no_known_issues;NA;NA
+49;BMW;R1200GS;2005;1200;115000;DE;sold;no_known_issues;NA;NA
+52;Honda;CBF600;2010;600;17000;DE;sold;no_known_issues;NA;NA
+57;Yamaha;XT660 Tenere;2008;660;NA;DE;sold;no_known_issues;NA;NA
+1;Kawasaki;Z1000;2012;1043;43000;BY;sold;NA;NA;NA
+10;Honda;CBX1100;2000;1100;10139;BY;sold;no_known_issues;NA;NA
+48;Kawasaki;ZX636;2003;636;20000;BY;sold;no_known_issues;NA;NA
+50;Kawasaki;Z1000;2005;1000;NA;BY;sold;no_known_issues;NA;NA
+47;Suzuki;SV;2000;645;50000;DE;sold;no_known_issues;NA;NA
+21;Yamaha;MT-07;2015;690;46574;BY;sold;NA;NA;NA
+44;Suzuki;DL;2008;650;47881;BY;sold;no_known_issues;NA;NA
+40;Yamaha;MT-125;2015;125;20000;PL;sold;no_known_issues;NA;NA
+67;BMW;S1000XR;2015;1000;NA;DE;sold;no_known_issues;NA;NA
+65;Honda;CMX500A;2017;500;26000;DE;sold;no_known_issues;NA;NA
+11;Yamaha;Diversion;2013;600;50000;BY;sold;NA;NA;NA
+25;Peugeot;Tweet;2019;125;15000;DE;sold;no_known_issues;NA;NA
+23;Suzuki;Inazuma;2015;250;20000;DE;sold;no_known_issues;NA;NA
+64;Kawasaki;Z125;2020;125;NA;DE;sold;no_known_issues;NA;NA
+17;Honda;CBR1000RR SC57;2008;1000;NA;BY;sold;no_known_issues;NA;NA
+59;Yamaha;FZS600;2006;600;NA;BY;sold;no_known_issues;NA;NA
+61;Honda;RT 700;2009;700;33108;BY;sold;no_known_issues;NA;NA
+62;Triumph;Tiger 800;2013;800;18000;BY;sold;no_known_issues;NA;NA
+66;Yamaha;Fazer 600S;2010;600;NA;BY;sold;no_known_issues;NA;NA
+75;Honda;Hornet;2007;600;17000;BY;sold;no_known_issues;NA;NA
+76;Honda;CBR;2001;929;6800;BY;sold;no_known_issues;NA;NA
+78;Honda;CBF1000;2011;1000;21000;BY;sold;no_known_issues;NA;NA
+83;Honda;CB600;2003;600;NA;BY;sold;no_known_issues;NA;NA
+84;Yamaha;YZF-R6;2004;600;NA;BY;sold;no_known_issues;NA;NA
+51;Suzuki;Intruder 1400;2002;1400;NA;BY;sold;no_known_issues;NA;NA
+73;Honda;VFR800;2014;800;26000;BY;sold;no_known_issues;NA;NA
+86;Triumph;Sprint;2008;1050;NA;BY;sold;no_known_issues;NA;NA
+91;BMW;R1100R;1997;1100;NA;DE;sold;no_known_issues;NA;NA
+79;Triumph;Tiger Explorer 1200;2015;1200;45000;DE;sold;no_known_issues;NA;NA
+14;Honda;VFR;2010;1200;35000;DE;sold;no_known_issues;NA;NA
+77;Honda;CB125;2022;125;30000;DE;sold;no_known_issues;NA;NA
+82;Peugeot;Pulsion;2022;150;17590;DE;sold;no_known_issues;NA;NA
+3;Yamaha;XT660;2013;660;40000;BY;sold;no_known_issues;NA;NA
+68;Suzuki;GW250;2013;250;NA;DE;sold;no_known_issues;NA;NA
+72;Honda;CBR900;2000;900;NA;DE;sold;no_known_issues;NA;NA
+60;Kawasaki;Ninja ZX636;2004;636;NA;BY;sold;no_known_issues;NA;NA
+107;Piaggio;Vespa 125;2023;125;307;DE;sold;no_known_issues;NA;NA
+80;Suzuki;Bandit 1200;2005;1200;49000;BY;sold;no_known_issues;NA;NA
+87;Triumph;Scrambler;2010;900;15000;BY;sold;no_known_issues;NA;NA
+88;Triumph;Sprint ST;2008;1050;35000;BY;sold;no_known_issues;NA;NA
+89;Honda;CBF600;2010;600;32000;BY;sold;no_known_issues;NA;NA
+90;Suzuki;Bandit 600;2003;600;35000;BY;sold;no_known_issues;NA;NA
+92;Honda;CBF600;2006;600;49000;BY;sold;no_known_issues;NA;NA
+95;Honda;CB1000;2015;1000;35500;BY;sold;no_known_issues;NA;NA
+96;Kawasaki;Z7S;2003;700;40000;BY;sold;no_known_issues;NA;NA
+98;Kawasaki;Z750;2009;750;31000;BY;sold;no_known_issues;NA;NA
+104;Suzuki;GSX-R600;2001;600;49000;BY;sold;no_known_issues;NA;NA
+105;Yamaha;XVS950 CU;2014;950;NA;BY;sold;no_known_issues;NA;NA
+106;Honda;CBF600F;2006;600;37000;BY;sold;no_known_issues;NA;NA
+108;Honda;CBF1000;2006;1000;36000;BY;sold;no_known_issues;NA;NA
+56;Suzuki;SV650;2003;650;NA;BY;sold;no_known_issues;NA;NA
+58;Honda;Crosstourer;2012;800;23000;BY;sold;no_known_issues;NA;NA
+63;Honda;CBR125;NA;125;NA;BY;sold;no_known_issues;NA;NA
+74;BMW;R1200GS;2006;1200;31000;BY;sold;no_known_issues;NA;NA
